@@ -4,6 +4,9 @@ import animationStyle from "./animationStyle.vue";
 import bookmarkStyle from "./page/bookmarkStyle.vue";
 import magazineStyle from "./page/magazineStyle.vue";
 import variableStyle from "./component/variableStyle.vue";
+import signupStyle from "./page/SignupStyle.vue";
+import AppDashboardStyle from "./page/AppDashboard/AppDashboardStyle.vue";
+import appMagazine from "./page/AppMagazine/appMagazine.vue";
 </script>
 <style lang="scss">
 * {
@@ -13,7 +16,7 @@ import variableStyle from "./component/variableStyle.vue";
   font-family: "Inter", sans-serif;
 }
 html {
-  font-size: 10px;
+  font-size: 10px !important;
 }
 .content {
   background-image: linear-gradient(
@@ -27,5 +30,4 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 </style>

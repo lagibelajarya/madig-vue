@@ -7,31 +7,21 @@
 .trans {
   &-0 {
     transform: translate(0);
-    opacity: 1;
-    visibility: visible;
   }
   &-y {
     &-100 {
       transform: translateY(-100%);
-      opacity: 0;
-      visibility: hidden;
     }
     &100 {
       transform: translateY(100%);
-      opacity: 0;
-      visibility: hidden;
     }
   }
   &-x {
     &-100 {
       transform: translateX(-100%);
-      opacity: 0;
-      visibility: hidden;
     }
     &100 {
       transform: translateX(100%);
-      opacity: 0;
-      visibility: hidden;
     }
   }
   &-nav {

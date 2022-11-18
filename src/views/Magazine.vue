@@ -1,20 +1,21 @@
 <script setup>
 import { ref } from "vue";
-let iconsrc = "src/components/icons/";
-const iconBookMark = `${iconsrc}bookmarks.svg`;
-const iconShare = `${iconsrc}share-social.svg`;
-const iconStar = `${iconsrc}star.svg`;
-const iconDownload = `${iconsrc}cloud-download.svg`;
-const iconCopy = `${iconsrc}copy.svg`;
+import Icons from "../components/Icons.vue";
+import { useRouter } from "vue-router";
 
 let toggleRate = ref(false);
 let toggleShare = ref(false);
 let toggleMark = ref(false);
 const url = window.location.href;
+const router = useRouter();
+function goToNavigation(name) {
+  router.push({ name: name });
+}
+
 </script>
 <template>
   <div class="magazine">
-    <div class="nav-logo">
+    <div @click="goToNavigation('home')" class="nav-logo">
       <img src="../assets/logo.svg" alt="Logo" />
       <p>LogoProject</p>
     </div>
@@ -26,11 +27,11 @@ const url = window.location.href;
         <div class="magazine-box-left">
           <div class="magazine-box-left-top">
             <div class="magazine-box-left-top-rating">
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
               <p>4.8/5</p>
             </div>
             <div class="magazine-box-left-top-title">
@@ -43,19 +44,19 @@ const url = window.location.href;
                 @click="toggleMark = !toggleMark"
                 class="magazine-box-left-top-action-btn"
               >
-                <img v-bind:src="iconBookMark" alt="bookmark" />
+                <Icons name="bookmark" />
               </div>
               <div
                 @click="toggleShare = !toggleShare"
                 class="magazine-box-left-top-action-btn"
               >
-                <img v-bind:src="iconShare" alt="bookmark" />
+                <Icons name="share" />
               </div>
               <div
                 @click="toggleRate = !toggleRate"
                 class="magazine-box-left-top-action-btn"
               >
-                <img v-bind:src="iconStar" alt="bookmark" />
+                <Icons name="star" />
               </div>
             </div>
           </div>
@@ -65,26 +66,31 @@ const url = window.location.href;
               Lorem ipsum dolor sit, amet
             </div>
             <div class="magazine-box-left-bottom-btn">
-              <button>Read Now</button>
-              <button><img v-bind:src="iconDownload" alt="" /></button>
+              <button @click="goToNavigation('magazine')">Read Now</button>
+              <button>
+                <Icons name="download" />
+              </button>
             </div>
           </div>
         </div>
 
         <!-- popup -->
         <div
-          :class="[toggleRate ? 'show ' : 'hide']"
+          :class="
+            ([toggleRate ? 'show ' : 'hide'],
+            [toggleRate ? 'trans-0' : 'trans-y-100'])
+          "
           class="magazine-box-popup-rating"
         >
           <div class="popup-container">
             <p>Apakah anda menyukai majalah ini?</p>
             <p>Berikan ratingmu kepada majalah kami</p>
             <div class="popup-container-star">
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
+              <span><Icons name="star" /></span>
             </div>
             <div
               @click="toggleRate = !toggleRate"
@@ -96,7 +102,10 @@ const url = window.location.href;
         </div>
 
         <div
-          :class="[toggleShare ? 'show ' : 'hide']"
+          :class="
+            ([toggleShare ? 'show ' : 'hide'],
+            [toggleShare ? 'trans-0' : 'trans-y-100'])
+          "
           class="magazine-box-popup-share"
         >
           <div class="popup-container">

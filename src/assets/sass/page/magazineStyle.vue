@@ -36,9 +36,10 @@
             gap: 0.5rem;
             display: flex;
             align-items: center;
-            span {
-              font-size: 3rem;
+            svg {
+              height: 3rem;
               color: yellow;
+              fill: yellow;
             }
             p {
               font-size: 2.4rem;
@@ -74,7 +75,8 @@
               color: white;
               cursor: pointer;
               transition: all 0.3s;
-              img {
+              svg {
+                fill: orangered;
                 height: 2rem;
               }
             }
@@ -108,8 +110,9 @@
               &:nth-child(1) {
               }
               &:nth-child(2) {
-                img {
-                  height: 3rem;
+                svg {
+                  height: 2rem;
+                  color: orangered;
                 }
               }
             }
@@ -156,9 +159,9 @@
               cursor: pointer;
             }
             &-star {
-              span {
-                font-size: 4rem;
-                color: rgb(255, 224, 67);
+              svg {
+                height: 4rem;
+                fill: rgb(255, 224, 67);
               }
             }
           }

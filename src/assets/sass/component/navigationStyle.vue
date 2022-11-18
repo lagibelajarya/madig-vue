@@ -83,7 +83,7 @@ $darkGreen: #012030;
     transform: scale(1);
     border-radius: 50%;
     position: fixed;
-    top: 3rem;
+    top: 2rem;
     right: 3.5rem;
     background-image: radial-gradient($lightGreen, $mediumGreen, $darkGreen);
     z-index: 99;
@@ -92,14 +92,14 @@ $darkGreen: #012030;
   &-btn {
     position: fixed;
     right: 5rem;
-    top: 5rem;
+    top: 4rem;
     font-size: 3rem;
     font-weight: 600;
     cursor: pointer;
     z-index: 101;
   }
   &-logo {
-    padding: 5rem 10rem;
+    padding: 3rem 5rem;
     cursor: pointer;
     z-index: 9;
     display: flex;

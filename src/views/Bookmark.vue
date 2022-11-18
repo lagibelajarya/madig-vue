@@ -1,6 +1,9 @@
 <script setup>
+import Icons from "../components/Icons.vue";
+
 </script>
 <template>
+ 
   <div class="bookmark">
     <div class="nav-logo">
       <img src="../assets/logo.svg" alt="Logo" />
@@ -12,11 +15,11 @@
       <div class="bookmark-slider">
         <div class="bookmark-box">
           <div class="bookmark-box-rating">
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
             <p>4.8/5</p>
           </div>
           <div class="bookmark-box-img">
@@ -29,11 +32,11 @@
         </div>
         <div class="bookmark-box">
           <div class="bookmark-box-rating">
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
             <p>4.8/5</p>
           </div>
           <div class="bookmark-box-img">
@@ -46,11 +49,11 @@
         </div>
         <div class="bookmark-box">
           <div class="bookmark-box-rating">
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
+            <span><Icons name="star" /></span>
             <p>4.8/5</p>
           </div>
           <div class="bookmark-box-img">

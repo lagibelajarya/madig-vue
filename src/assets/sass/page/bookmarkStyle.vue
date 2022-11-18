@@ -35,9 +35,10 @@
           align-items: center;
           gap: 0.5rem;
           margin-bottom: 0.5rem;
-          span {
-            font-size: 2rem;
+          svg {
+            height: 3rem;
             color: yellow;
+            fill: yellow;
           }
           p {
             color: white;

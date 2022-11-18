@@ -34,7 +34,7 @@ let toggleNav = ref(false);
           to="/bookmark"
           active-class="active"
           class="navigation-right-link"
-          >Bookmart</RouterLink
+          >Bookmark</RouterLink
         >
         <RouterLink
           @click="toggleNav = false"
