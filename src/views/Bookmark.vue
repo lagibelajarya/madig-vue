@@ -5,10 +5,6 @@ import Icons from "../components/Icons.vue";
 <template>
  
   <div class="bookmark">
-    <div class="nav-logo">
-      <img src="../assets/logo.svg" alt="Logo" />
-      <p>LogoProject</p>
-    </div>
     <!-- <div class="bg-blur"></div> -->
     <div class="bookmark-container">
       <p class="bookmark-container-title">Your Bookmark</p>

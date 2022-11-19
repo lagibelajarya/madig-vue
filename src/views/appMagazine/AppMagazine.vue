@@ -2,6 +2,7 @@
 import Icons from "../../components/Icons.vue";
 import { ref } from "vue";
 let toggleView = ref(false);
+let toggleMusic = ref(false);
 </script>
 <template>
   <div class="appMagazine">
@@ -16,7 +17,10 @@ let toggleView = ref(false);
     </div>
 
     <!-- tools display -->
-    <div class="appMagazine-tools-display">
+    <div
+      class="appMagazine-tools-display"
+      :class="{ 'trans-tools-btn': toggleView }"
+    >
       <div class="appMagazine-tools-display-item"><Icons name="zoomIn" /></div>
       <div class="appMagazine-tools-display-item">
         <Icons name="backward" />
@@ -37,10 +41,16 @@ let toggleView = ref(false);
     <!-- tools btn -->
     <div class="appMagazine-tools-btn">
       <div class="appMagazine-tools-btn-search"><Icons name="search" /></div>
-      <div class="appMagazine-tools-btn-setting">
+      <div
+        class="appMagazine-tools-btn-setting"
+        @click="(toggleMusic = !toggleMusic), (toggleView = false)"
+      >
         <Icons name="construct" />
       </div>
-      <div class="appMagazine-tools-btn-view" @click="toggleView = !toggleView">
+      <div
+        class="appMagazine-tools-btn-view"
+        @click="(toggleView = !toggleView), (toggleMusic = false)"
+      >
         <Icons name="list" />
       </div>
     </div>
@@ -69,8 +79,39 @@ let toggleView = ref(false);
             <p>magazine 1</p>
           </div>
         </div>
+        <div
+          @click="toggleView = !toggleView"
+          class="appMagazine-tools-view-box-close"
+        >
+          <Icons name="chevron-right" />
+        </div>
       </div>
-      <div class="appMagazine-tools-view-close">x</div>
+    </div>
+
+    <!-- tools general -->
+    <div
+      :class="[toggleMusic ? 'trans-0' : 'trans-y100']"
+      class="appMagazine-tools-general"
+    >
+      <div class="appMagazine-tools-general-container">
+        <div class="appMagazine-tools-general-box">
+          <div class="appMagazine-tools-general-box-title">Audio</div>
+          <div class="appMagazine-tools-general-box-item">
+            <div class="appMagazine-tools-general-box-item-left">Music</div>
+            <div class="appMagazine-tools-general-box-item-right">
+              <Icons name="zoomIn" />
+            </div>
+          </div>
+          <div class="appMagazine-tools-general-box-item">
+            <div class="appMagazine-tools-general-box-item-left">
+              Music Volume
+            </div>
+            <div class="appMagazine-tools-general-box-item-right">
+              <Icons name="zoomIn" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

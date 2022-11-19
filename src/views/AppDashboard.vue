@@ -1,7 +1,8 @@
 <script setup>
 import Sidebar from "./appDashboard/Sidebar.vue";
 import { ref } from "vue";
-let toggleNavigation = ref(false);
+import { onMounted } from "vue";
+let toggleSearch = ref(false);
 </script>
 <template>
   <Sidebar />

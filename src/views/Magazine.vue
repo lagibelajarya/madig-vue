@@ -11,15 +11,114 @@ const router = useRouter();
 function goToNavigation(name) {
   router.push({ name: name });
 }
-
 </script>
 <template>
   <div class="magazine">
-    <div @click="goToNavigation('home')" class="nav-logo">
-      <img src="../assets/logo.svg" alt="Logo" />
-      <p>LogoProject</p>
-    </div>
     <div class="magazine-container">
+      <!-- <div class="magazine-container-box">
+        <div class="magazine-container-box-slider"></div>
+      </div> -->
+      <div class="magazine-container-box">
+        <div class="magazine-container-box-title">Your Magazine</div>
+
+        <div class="magazine-container-box-content">
+          <div
+            class="magazine-container-box-content-mgz"
+            @click="goToNavigation('detailMagazine')"
+          >
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="magazine-container-box">
+        <div class="magazine-container-box-title">Your Magazine</div>
+
+        <div class="magazine-container-box-content">
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+          <div class="magazine-container-box-content-mgz">
+            <div
+              class="magazine-container-box-content-mgz-img"
+              style="background: url('src/assets/magazine/magazine1.jpg')"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="magazine-container">
       <div class="magazine-box">
         <div class="magazine-box-right">
           <img src="../assets/magazine/magazine1.jpg" alt="" />
@@ -74,12 +173,8 @@ function goToNavigation(name) {
           </div>
         </div>
 
-        <!-- popup -->
         <div
-          :class="
-            ([toggleRate ? 'show ' : 'hide'],
-            [toggleRate ? 'trans-0' : 'trans-y-100'])
-          "
+          :class="[toggleRate ? 'show trans-0' : 'hide trans-y-100']"
           class="magazine-box-popup-rating"
         >
           <div class="popup-container">
@@ -102,10 +197,7 @@ function goToNavigation(name) {
         </div>
 
         <div
-          :class="
-            ([toggleShare ? 'show ' : 'hide'],
-            [toggleShare ? 'trans-0' : 'trans-y-100'])
-          "
+          :class="[toggleShare ? 'show trans-0' : 'hide trans-y-100']"
           class="magazine-box-popup-share"
         >
           <div class="popup-container">
@@ -133,6 +225,6 @@ function goToNavigation(name) {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>

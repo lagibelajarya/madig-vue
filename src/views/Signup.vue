@@ -6,10 +6,10 @@ const gotoDashboard = () => router.push({ name: "appDashboard" });
 <template>
   <div class="signup">
     <!--navigation logo  -->
-    <div class="nav-logo">
+    <!-- <div class="nav-logo">
       <img src="../assets/logo.svg" alt="Logo" />
       <p>LogoProject</p>
-    </div>
+    </div> -->
     <!-- signup container -->
     <div class="signup-container">
       <div class="signup-box">

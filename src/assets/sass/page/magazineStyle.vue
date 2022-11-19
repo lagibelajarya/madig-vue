@@ -8,237 +8,128 @@
   flex-direction: column;
   min-height: 100vh;
   height: 100%;
-
   &-container {
-    padding: 0 10rem 10rem 10rem;
-    flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    .magazine-box {
-      position: relative;
+    flex-direction: column;
+    gap: 2rem;
+    &-box {
+      padding: 0 5rem;
       display: flex;
-      gap: 5rem;
-      align-items: center;
-      justify-content: center;
-      &-right {
-        img {
-          height: 40rem;
-          border-radius: 1rem;
+      flex-direction: column;
+      gap: 1rem;
+      &-slider {
+      }
+      &-title {
+        font-size: 1.6rem;
+        color: white;
+        font-weight: 600;
+      }
+      &-content {
+        overflow: auto;
+        display: flex;
+        gap: 1.6rem;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        &-mgz {
+          &-img {
+            border-radius: 1rem;
+            background-position: top !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            width: 20rem;
+            height: 30rem;
+          }
         }
       }
-      &-left {
+    }
+  }
+}
+// detail magazine
+.detail-magazine {
+  &-container {
+    &-info {
+      padding: 5rem;
+      &-title {
+        padding: 2rem;
+        border-radius: 1rem;
         display: flex;
         flex-direction: column;
-        gap: 6.8rem;
-        &-top {
-          &-rating {
-            gap: 0.5rem;
-            display: flex;
-            align-items: center;
-            svg {
-              height: 3rem;
-              color: yellow;
-              fill: yellow;
-            }
-            p {
-              font-size: 2.4rem;
-              font-weight: 600;
-              color: white;
-            }
-          }
-          &-title {
-            font-size: 4.2rem;
-            color: white;
-            font-weight: 600;
-            margin-bottom: 2rem;
-          }
-          &-date {
+        gap: 10rem;
+        background-image: linear-gradient(to right, #012030 50%, transparent),
+          url("/src/assets/magazine/magazine1.jpg" );
+        background-position: 100% !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        &-name {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          gap: 1.4rem;
+          &-1 {
             font-size: 2rem;
+            font-weight: 600;
             color: white;
-            margin-bottom: 3rem;
           }
-          &-action {
+          &-2 {
             display: flex;
-            gap: 1rem;
-            align-items: center;
-            &-btn {
-              padding: 1.2rem 2.4rem;
-              background: transparent;
-              border: solid 3px white;
-              border-radius: 1rem;
-              font-size: 2.4rem;
-              font-weight: 600;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              color: white;
-              cursor: pointer;
-              transition: all 0.3s;
-              svg {
-                fill: orangered;
-                height: 2rem;
+            gap: 0.5rem;
+            span {
+              color: rgba(grey, 0.8);
+              font-size: 1.6rem;
+              &:nth-child(1) {
+              }
+              &:nth-child(2) {
+              }
+              &:nth-child(3) {
+              }
+              &:nth-child(4) {
+              }
+              &:nth-child(5) {
               }
             }
           }
-        }
-        &-bottom {
-          display: flex;
-          flex-direction: column;
-          gap: 4rem;
-          &-line {
-            hr {
-              border: none;
-              border-bottom: solid 2px white;
-              width: 100%;
-            }
-          }
-          &-desc {
-            font-size: 2rem;
+          &-3 {
+            font-size: 1.6rem;
+            font-weight: 400;
             color: white;
+          }
+        }
+        &-action {
+          width: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &-date {
+            color: rgba(grey, 0.8);
+            font-size: 1.6rem;
           }
           &-btn {
             display: flex;
-            gap: 1rem;
+            align-items: center;
+            gap: 2rem;
             button {
-              padding: 1rem 3rem;
-              background: white;
-              border-radius: 1rem;
-              color: black;
-              font-size: 2.6rem;
+              outline: none;
               border: none;
+              background-color: transparent;
               &:nth-child(1) {
+                padding: 0.5rem 2rem;
+                border-radius: 0.5rem;
+                background-color: white;
               }
               &:nth-child(2) {
                 svg {
                   height: 2rem;
-                  color: orangered;
+                  fill: white;
                 }
               }
-            }
-          }
-        }
-      }
-
-      &-popup {
-        &-rating {
-          position: absolute;
-          transition: all 0.3s;
-          .popup-container {
-            padding: 5rem 10rem;
-            background-color: white;
-            border-radius: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            p {
-              &:nth-child(1) {
-                font-size: 2.8rem;
-                font-weight: 600;
-                margin-bottom: 1rem;
-              }
-              &:nth-child(2) {
-                font-size: 1.8rem;
-                margin-bottom: 3rem;
-              }
-            }
-            &-close {
-              position: absolute;
-              top: -1rem;
-              right: -1rem;
-              height: 4rem;
-              width: 4rem;
-              background: white;
-              border-radius: 100%;
-              font-size: 2.4rem;
-              font-weight: 600;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              cursor: pointer;
-            }
-            &-star {
-              svg {
-                height: 4rem;
-                fill: rgb(255, 224, 67);
-              }
-            }
-          }
-        }
-        &-share {
-          position: absolute;
-          transition: all 0.3s;
-          .popup-container {
-            padding: 5rem 10rem;
-            background-color: white;
-            border-radius: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            position: relative;
-            &-title {
-              font-size: 2.8rem;
-              font-weight: 600;
-              margin-bottom: 2rem;
-            }
-            &-medsos {
-              display: flex;
-              gap: 2rem;
-              margin-bottom: 2rem;
-              &-btn {
-                height: 5rem;
-                width: 5rem;
-                background-color: transparent;
-                border-radius: 100%;
-                border: solid 2px black;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2rem;
-                font-weight: 600;
-              }
-            }
-            &-link {
-              p {
-                font-size: 2rem;
-                font-weight: 600;
-                margin-bottom: 1rem;
-              }
-              &-box {
-                display: flex;
-                gap: 2rem;
-                &-field {
-                  padding: 1rem;
-                  border-radius: 1rem;
-                  border: solid 2px black;
-                  width: 40rem;
-                  font-size: 1.8rem;
-                }
-                &-btn {
-                  padding: 1rem;
-                  border-radius: 1rem;
-                  background-color: orangered;
-                  img {
-                    height: 2rem;
-                  }
+              &:nth-child(3) {
+                svg {
+                  fill: white;
+                  height: 2rem;
                 }
               }
-            }
-            &-close {
-              position: absolute;
-              top: -1rem;
-              right: -1rem;
-              height: 4rem;
-              width: 4rem;
-              background: white;
-              border-radius: 100%;
-              font-size: 2.4rem;
-              font-weight: 600;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              cursor: pointer;
             }
           }
         }

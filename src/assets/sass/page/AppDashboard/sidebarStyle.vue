@@ -8,7 +8,7 @@ $darkGreen: #012030;
 .sidebar {
   height: 100%;
   position: fixed;
-  width: 25rem;
+  // width: 25rem;
   background-color: white;
   box-shadow: 0 4px 8px rgba($color: #000000, $alpha: 0.3);
   &-container {
@@ -17,19 +17,13 @@ $darkGreen: #012030;
     align-items: center;
     gap: 10rem;
     height: 100%;
+    padding: 2rem 0;
     &-logo {
       margin-top: 3rem;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
       cursor: pointer;
+      position: relative;
       img {
         height: 3rem;
-      }
-      p {
-        font-size: 2rem;
-        color: $lightGreen;
-        font-weight: 600;
       }
     }
     &-list {
@@ -42,6 +36,8 @@ $darkGreen: #012030;
         display: flex;
         align-items: center;
         gap: 1rem;
+        padding: 0 2rem;
+        position: relative;
         svg {
           height: 2rem;
           fill: $darkGreen;
@@ -50,14 +46,20 @@ $darkGreen: #012030;
           color: $darkGreen;
           font-size: 1.4rem;
           font-weight: 500;
+          transition: all 0.5s;
+          overflow: hidden;
+          &:hover {
+            transform: translateX(0.5rem);
+          }
         }
         &.active {
-          padding: 0.5rem 2.4rem;
-          border-radius: 0.7rem;
-          background: $darkGreen;
-          & > * {
-            fill: white;
-            color: white;
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 0.3rem;
+            background-color: $darkGreen;
           }
         }
       }
@@ -68,15 +70,24 @@ $darkGreen: #012030;
       justify-content: center;
       align-items: flex-end;
       padding: 3rem 0;
+      transition: all 0.5s;
       button {
-        padding: 0.5rem 2.4rem;
-        border-radius: 0.7rem;
-        border: solid 2px $darkGreen;
+        // padding: 0.5rem 2.4rem;
+        // border-radius: 0.7rem;
+        // border: solid 2px $darkGreen;
+        border: none;
+        outline: none;
         background: transparent;
         color: $darkGreen;
         font-size: 1.4rem;
         font-weight: 500;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        svg {
+          height: 1.6rem;
+        }
       }
     }
   }

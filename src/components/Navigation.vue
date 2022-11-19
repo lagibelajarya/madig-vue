@@ -4,7 +4,7 @@ import { ref } from "vue";
 let toggleNav = ref(false);
 </script>
 <template>
-  <div class="nav-btn" @click="toggleNav = !toggleNav">
+  <!-- <div class="nav-btn" @click="toggleNav = !toggleNav">
     <div :class="{ open: toggleNav }" id="button-nav">
       <span></span>
       <span></span>
@@ -19,7 +19,7 @@ let toggleNav = ref(false);
   <div :class="[toggleNav ? 'trans-0' : 'trans-x100']" class="navigation">
     <div class="navigation-box">
       <div class="navigation-left">
-        <!-- <img src="../assets/img/ilustrationNavigation.svg" alt="" /> -->
+         <img src="../assets/img/ilustrationNavigation.svg" alt="" /> 
       </div>
       <div class="navigation-right">
         <RouterLink
@@ -51,6 +51,26 @@ let toggleNav = ref(false);
           >Signup</RouterLink
         >
       </div>
+    </div>
+  </div> -->
+
+  <div class="navigation">
+    <div class="navigation-container">
+      <div class="navigation-container-list">
+        <div class="navigation-container-list-logo">
+          <img src="../assets/logo.svg" alt="" />
+          <p>Logo</p>
+        </div>
+        <RouterLink to="/" class="navigation-container-list-link"
+          >Magazine</RouterLink
+        >
+        <RouterLink to="/bookmark" class="navigation-container-list-link"
+          >Bookmark</RouterLink
+        >
+      </div>
+      <RouterLink to="signup" class="navigation-container-signup"
+        >Signup</RouterLink
+      >
     </div>
   </div>
 </template>

@@ -33,6 +33,7 @@
       padding: 2rem;
       border-radius: 1rem;
       background: white;
+      transition: all 1s linear;
 
       &-item {
         svg {
@@ -52,6 +53,7 @@
       position: fixed;
       top: 3rem;
       right: 10rem;
+
       & > * {
         cursor: pointer;
       }
@@ -76,20 +78,29 @@
       border-radius: 0 1rem 1rem 0;
       padding: 2rem;
       transition: all 0.7s linear;
-      &-close {
-        height: 3rem;
-        width: 3rem;
-        position: absolute;
-        right: 0;
-        top: auto;
-        background-color: white;
-        border-radius: 100%;
-      }
+
       &-box {
         display: flex;
         flex-direction: column;
         gap: 3rem;
         height: -webkit-fill-available;
+        position: relative;
+        &-close {
+          height: 3rem;
+          width: 3rem;
+          position: absolute;
+          right: -3rem;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: white;
+          border-radius: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          svg {
+            height: 2rem;
+          }
+        }
         &-head {
           display: flex;
           align-items: center;
@@ -114,6 +125,44 @@
               width: 100%;
             }
             p {
+            }
+          }
+        }
+      }
+    }
+
+    &-general {
+      z-index: 200;
+      position: fixed;
+      height: 50%;
+      width: 30rem;
+      bottom: 0;
+      right: 10rem;
+      background: white;
+      border-radius: 1rem 1rem 0 0;
+      padding: 2rem;
+      transition: all 0.7s linear;
+      &-container {
+      }
+      &-box {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-bottom: solid 1px black;
+        &-title {
+          font-size: 2rem;
+          font-weight: 600;
+        }
+        &-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          &-left {
+            font-size: 1.4rem;
+          }
+          &-right {
+            svg {
+              height: 2rem;
             }
           }
         }
