@@ -6,10 +6,7 @@ let toggleMusic = ref(false);
 </script>
 <template>
   <div class="appMagazine">
-    <div class="nav-logo">
-      <img src="../../assets/logo.svg" alt="Logo" />
-      <p>LogoProject</p>
-    </div>
+
     <div class="appMagazine-content">
       <div class="appMagazine-content-box">
         <img src="../../assets/magazine/magazine1.jpg" alt="" />

@@ -51,8 +51,8 @@
       background: white;
 
       position: fixed;
-      top: 3rem;
-      right: 10rem;
+      top: calc(6.4rem + 3rem);
+      right: 3rem;
 
       & > * {
         cursor: pointer;
