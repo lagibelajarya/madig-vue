@@ -6,6 +6,11 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
+      component: () => import("../views/Home.vue"),
+    },
+    {
+      path: "/magazine",
+      name: "magazine",
       component: () => import("../views/Magazine.vue"),
     },
     {
@@ -14,8 +19,8 @@ const router = createRouter({
       component: () => import("../views/DetailMagazine.vue"),
     },
     {
-      path: "/magazine",
-      name: "magazine",
+      path: "/AppMagazine",
+      name: "AppMagazine",
       component: () => import("../views/appMagazine/AppMagazine.vue"),
     },
     {
@@ -29,8 +34,8 @@ const router = createRouter({
       component: () => import("../views/Signup.vue"),
     },
     {
-      path: "/dashboard",
-      name: "appDashboard",
+      path: "/AppDashboard",
+      name: "AppDashboard",
       component: () => import("../views/AppDashboard.vue"),
       children: [
         {

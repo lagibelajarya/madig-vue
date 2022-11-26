@@ -1,7 +1,8 @@
 <script setup>
 import { useRouter } from "vue-router";
+import Icons from "../components/Icons.vue";
 const router = useRouter();
-const gotoDashboard = () => router.push({ name: "appDashboard" });
+const gotoDashboard = () => router.push({ name: "dashboard" });
 </script>
 <template>
   <div class="signup">
@@ -16,18 +17,16 @@ const gotoDashboard = () => router.push({ name: "appDashboard" });
         <p class="signup-box-title">Signup To Dashboard</p>
         <form class="signup-box-form" @submit.prevent="gotoDashboard">
           <div class="signup-box-form-input">
-            <p>Your Username</p>
-            <input type="text" />
+
+            <Icons name="profile" />
+            <input type="text" placeholder="Your Username" />
           </div>
           <div class="signup-box-form-input">
-            <p>Your Email</p>
-            <input type="email" />
+            <!-- <p>Your password</p> -->
+            <Icons name="password" />
+            <input type="password" placeholder="Your Password"  />
           </div>
-          <div class="signup-box-form-input">
-            <p>Your password</p>
-            <input type="password" class="signup-box-form-input" />
-          </div>
-          <button>Signup</button>
+          <button>Sign up</button>
         </form>
       </div>
     </div>

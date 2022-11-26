@@ -1,9 +1,42 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import Icons from "../../components/Icons.vue";
-let toggleSearch = ref(false);
+let cover = reactive([
+  {
+    img: "/src/assets/magazine/coverDepan.svg",
+    title: "magazine1",
+    desc: "hello from magazine1",
+  },
+  {
+    img: "/src/assets/magazine/COVERRRR-2-1.svg",
+    title: "magazine2",
+    desc: "hello from magazine2",
+  },
+  {
+    img: "/src/assets/magazine/COVERRRR-2-2.svg",
+    title: "magazine3",
+    desc: "hello from magazine3",
+  },
+  {
+    img: "/src/assets/magazine/COVERRRR-2-3.svg",
+    title: "magazine4",
+    desc: "hello from magazine4",
+  },
+  {
+    img: "/src/assets/magazine/COVERRRR-2-4.svg",
+    title: "magazine5",
+    desc: "hello from magazine5",
+  },
+  {
+    img: "/src/assets/magazine/COVERRRR-2-5.svg",
+    title: "magazine6",
+    desc: "hello from magazine6",
+  },
+]);
 
+let toggleSearch = ref(false);
 </script>
+
 <template>
   <div class="dashboard">
     <div class="dashboard-container-1">
@@ -55,32 +88,15 @@ let toggleSearch = ref(false);
         </div>
         <div class="dashboard-container-1-content-info">
           <!-- content dmagazine box -->
-          <div class="dashboard-container-1-content-info-box">
-            <img src="../../assets/magazine/magazine1.jpg" alt="" />
+          <div
+            v-for="item in cover"
+            class="dashboard-container-1-content-info-box"
+          >
+          
+            <img v-bind:src="item.img" alt="" loading="lazy" />
             <div class="dashboard-container-1-content-info-box-title">
-              <p>Example Title</p>
-              <p>Lorem ipsum dolor sit, amet consectetur</p>
-            </div>
-          </div>
-          <div class="dashboard-container-1-content-info-box">
-            <img src="../../assets/magazine/magazine1.jpg" alt="" />
-            <div class="dashboard-container-1-content-info-box-title">
-              <p>Example Title</p>
-              <p>Lorem ipsum dolor sit, amet consectetur</p>
-            </div>
-          </div>
-          <div class="dashboard-container-1-content-info-box">
-            <img src="../../assets/magazine/magazine1.jpg" alt="" />
-            <div class="dashboard-container-1-content-info-box-title">
-              <p>Example Title</p>
-              <p>Lorem ipsum dolor sit, amet consectetur</p>
-            </div>
-          </div>
-          <div class="dashboard-container-1-content-info-box">
-            <img src="../../assets/magazine/magazine1.jpg" alt="" />
-            <div class="dashboard-container-1-content-info-box-title">
-              <p>Example Title</p>
-              <p>Lorem ipsum dolor sit, amet consectetur</p>
+              <p>{{ item.title }}</p>
+              <p>{{ item.desc }}</p>
             </div>
           </div>
         </div>

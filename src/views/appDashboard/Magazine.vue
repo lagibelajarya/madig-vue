@@ -131,14 +131,4 @@ let toggleSearch = ref(false);
     </div>
   </div>
 </template>
-<style>
-.nav-btn {
-  display: none;
-}
-.nav-bg {
-  display: none;
-}
-.navigation {
-  display: none;
-}
-</style>
+<style></style>

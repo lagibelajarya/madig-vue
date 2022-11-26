@@ -10,7 +10,7 @@ import magazineStyle from "./magazineStyle.vue";
   margin-left: 7rem;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 6.4rem);
   height: 100%;
   & .dashboard {
     display: flex;

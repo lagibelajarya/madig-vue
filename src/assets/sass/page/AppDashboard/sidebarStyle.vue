@@ -6,7 +6,7 @@ $lightGreen: #9aeba3;
 $mediumGreen: #13678a;
 $darkGreen: #012030;
 .sidebar {
-  height: 100%;
+  height: -webkit-fill-available;
   position: fixed;
   // width: 25rem;
   background-color: white;
@@ -72,9 +72,6 @@ $darkGreen: #012030;
       padding: 3rem 0;
       transition: all 0.5s;
       button {
-        // padding: 0.5rem 2.4rem;
-        // border-radius: 0.7rem;
-        // border: solid 2px $darkGreen;
         border: none;
         outline: none;
         background: transparent;

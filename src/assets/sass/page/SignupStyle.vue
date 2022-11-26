@@ -6,11 +6,11 @@
 .signup {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 6.4rem);
   height: 100%;
 
   &-container {
-    padding: 0 10rem 10rem 10rem;
+    padding: 5rem;
     flex: 1;
     display: flex;
     align-items: center;
@@ -25,11 +25,15 @@
     justify-content: center;
     flex-direction: column;
     gap: 4rem;
-    padding: 3rem 5rem;
+    padding: 5rem 10rem;
     border-radius: 1rem;
-    background-color: white;
+    background-color: #012030;
+
+    @media screen and (max-width: 600px) {
+      padding: 3rem 5rem;
+    }
     &-title {
-      color: orangered;
+      color: white;
       font-size: 2.4rem;
       font-weight: 600;
     }
@@ -38,24 +42,31 @@
       flex-direction: column;
       gap: 1rem;
       &-input {
-        p {
-          font-size: 1.6rem;
-          color: black;
-          margin-bottom: 0.5rem;
+        border-bottom: solid 2px var(--color-blue);
+        padding: 1rem 3rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        svg {
+          height: 2rem;
+          fill: white;
         }
         input {
+          width: 100%;
           background-color: transparent;
           border: none;
           outline: none;
-          padding: 1rem 3rem;
           font-size: 1.6rem;
-          color: orangered;
+          color: white;
           border-radius: 0.5rem;
-          border: solid 2px orangered;
+          &::placeholder {
+            color: rgba(white, 0.5);
+          }
         }
       }
       button {
-        background-color: orangered;
+        margin-top: 3rem;
+        background-color: var(--color-blue);
         border: none;
         outline: none;
         padding: 1rem 3rem;

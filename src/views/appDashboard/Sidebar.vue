@@ -46,8 +46,8 @@ let toggleSidebar = ref(false);
       <Transition>
         <div
           v-if="toggleSidebar"
-          :class="[toggleSidebar ? 'show' : 'hide']"
           class="sidebar-container-logout"
+          :class="[toggleSidebar ? 'show' : 'hide']"
         >
           <button @click="goToNavigation">
             Logout <Icons name="logout" />
