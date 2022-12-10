@@ -14,7 +14,7 @@ let toggleSidebar = ref(false);
   >
     <div class="sidebar-container">
       <div @click="goToNavigation" class="sidebar-container-logo">
-        <img src="../../assets/logo.svg" alt="" />
+        <img src="../../assets/img/logoGreen.svg" alt="" />
       </div>
       <div class="sidebar-container-list">
         <RouterLink

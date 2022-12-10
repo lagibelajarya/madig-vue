@@ -1,11 +1,5 @@
 <script setup>
-import dashboarStyle from "./component/navigationStyle.vue";
 import animationStyle from "./animationStyle.vue";
-import bookmarkStyle from "./page/bookmarkStyle.vue";
-import magazineStyle from "./page/magazineStyle.vue";
-import variableStyle from "./component/variableStyle.vue";
-import signupStyle from "./page/SignupStyle.vue";
-import homeStyle from "./page/homeStyle.vue";
 import AppDashboardStyle from "./page/AppDashboard/AppDashboardStyle.vue";
 import appMagazine from "./page/AppMagazine/appMagazine.vue";
 </script>
@@ -15,6 +9,7 @@ import appMagazine from "./page/AppMagazine/appMagazine.vue";
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  text-decoration: none;
 
   // ::-webkit-scrollbar {
   //   width: 1rem;
@@ -26,10 +21,12 @@ import appMagazine from "./page/AppMagazine/appMagazine.vue";
   //     background-color: #2962ff;
   //     border-radius: 1rem;
   //   }
+  
+  
   // }
 }
 :root {
-  --color-green: hsla(160, 100%, 37%, 1);
+  --color-green: #00bd7e;
   --lightGreen: #9aeba3;
   --mediumGreen: #13678a;
   --darkGreen: #012030;
@@ -37,6 +34,7 @@ import appMagazine from "./page/AppMagazine/appMagazine.vue";
 }
 html {
   font-size: 10px !important;
+  scroll-behavior: smooth;
 }
 .content {
   background-image: linear-gradient(

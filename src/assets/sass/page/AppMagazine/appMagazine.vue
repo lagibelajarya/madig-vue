@@ -15,6 +15,21 @@
     flex: 1;
     padding: 10rem 0;
     &-box {
+      width: -webkit-fill-available;
+      .flipbook-viewport {
+        justify-content: center;
+        display: flex;
+        & .container {
+          & .flipbook {
+            & .wrapper-page {
+            }
+            &-page {
+              // width: 100% !important;
+              // height: 100% !important;
+            }
+          }
+        }
+      }
       & .default-book {
         width: -webkit-fill-available;
         display: flex;
@@ -85,8 +100,8 @@
       background: white;
       border-radius: 0 1rem 1rem 0;
       padding: 2rem;
-      transition: all 0.7s linear;
       background-color: white;
+      transition: all 0.5s cubic-bezier(0.83, 0, 0.17, 1);
 
       &-box {
         display: flex;
@@ -165,7 +180,7 @@
       background: white;
       border-radius: 1rem 1rem 0 0;
       padding: 2rem;
-      transition: all 0.7s linear;
+      transition: all 0.5s cubic-bezier(0.83, 0, 0.17, 1);
       @media screen and (max-width: 500px) {
         width: -webkit-fill-available;
         right: 0;
@@ -199,6 +214,88 @@
               font-size: 1.6rem;
               cursor: pointer;
             }
+            & input[type="range"] {
+              height: 25px;
+              -webkit-appearance: none;
+              margin: 10px 0;
+              width: 100%;
+            }
+            input[type="range"]:focus {
+              outline: none;
+            }
+            input[type="range"]::-webkit-slider-runnable-track {
+              width: 100%;
+              height: 25px;
+              cursor: pointer;
+              animate: 0.2s;
+
+              background: #61abff;
+              border-radius: 50px;
+              border: 1px solid #000000;
+            }
+            input[type="range"]::-webkit-slider-thumb {
+              height: 20px;
+              width: 20px;
+              border-radius: 20px;
+              background: #ffffff;
+              cursor: pointer;
+              -webkit-appearance: none;
+              margin-top: 3px;
+            }
+            input[type="range"]:focus::-webkit-slider-runnable-track {
+              background: #61abff;
+            }
+            input[type="range"]::-moz-range-track {
+              width: 100%;
+              height: 25px;
+              cursor: pointer;
+              animate: 0.2s;
+
+              background: #61abff;
+              border-radius: 50px;
+            }
+            input[type="range"]::-moz-range-thumb {
+              height: 20px;
+              width: 20px;
+              border-radius: 20px;
+              background: #ffffff;
+              cursor: pointer;
+            }
+            input[type="range"]::-ms-track {
+              width: 100%;
+              height: 25px;
+              cursor: pointer;
+              animate: 0.2s;
+              background: transparent;
+              border-color: transparent;
+              color: transparent;
+            }
+            input[type="range"]::-ms-fill-lower {
+              background: #61abff;
+
+              border-radius: 100px;
+            }
+            input[type="range"]::-ms-fill-upper {
+              background: #61abff;
+
+              border-radius: 100px;
+            }
+            input[type="range"]::-ms-thumb {
+              margin-top: 1px;
+
+              height: 20px;
+              width: 20px;
+              border-radius: 22px;
+              background: #ffffff;
+              cursor: pointer;
+            }
+            input[type="range"]:focus::-ms-fill-lower {
+              background: #61abff;
+            }
+            input[type="range"]:focus::-ms-fill-upper {
+              background: #61abff;
+            }
+
             & .btn-auto-scroll {
               border: solid 2px rgba(grey, 0.2);
               border-radius: 0.5rem;

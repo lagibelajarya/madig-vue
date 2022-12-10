@@ -5,7 +5,7 @@ import magazineStyle from "./magazineStyle.vue";
 <template>
   <div></div>
 </template>
-<style lang="scss">
+<style lang="scss" >
 .appDashboard {
   margin-left: 7rem;
   display: flex;
@@ -27,7 +27,7 @@ import magazineStyle from "./magazineStyle.vue";
         padding: 3rem;
         background-color: white;
         gap: 3rem;
-        border-bottom: solid .5px rgba(#000000, 0.3);
+        border-bottom: solid 0.5px rgba(#000000, 0.3);
         &-title {
           display: flex;
           align-items: center;

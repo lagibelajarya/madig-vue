@@ -11,6 +11,7 @@ $darkGreen: #012030;
   // width: 25rem;
   background-color: white;
   box-shadow: 0 4px 8px rgba($color: #000000, $alpha: 0.3);
+  z-index: 200;
   &-container {
     display: flex;
     flex-direction: column;

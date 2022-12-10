@@ -14,7 +14,7 @@ const router = createRouter({
       component: () => import("../views/Magazine.vue"),
     },
     {
-      path: "/detail-magazine",
+      path: "/detail-magazine/:id",
       name: "detailMagazine",
       component: () => import("../views/DetailMagazine.vue"),
     },
