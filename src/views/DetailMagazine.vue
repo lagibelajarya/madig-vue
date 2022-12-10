@@ -5,6 +5,7 @@ import { useRouter, useRoute, RouterLink } from "vue-router";
 import { ref, reactive, onMounted } from "vue";
 import { urlApi, apiClient } from "/src/api/axios-config";
 import axios from "axios";
+import { $ } from "dom7";
 
 const router = useRouter();
 const route = useRoute();
@@ -42,7 +43,7 @@ function bgTitleStyle(name) {
       background: "#012030",
     };
   } else {
-    if (window.matchMedia("(max-width: 768px)").matches) {
+    if (window.innerWidth <= 768) {
       return {
         background: `linear-gradient(to top,#012030 50%,transparent), url(${
           patchCover + name
@@ -57,8 +58,10 @@ function bgTitleStyle(name) {
     }
   }
 }
-window.addEventListener("resize", bgTitleStyle());
 
+window.addEventListener("resize", () => {
+  bgTitleStyle();
+});
 function toClipboard() {
   let text = document.querySelector(
     ".popup-share-container-link-target span:nth-child(1)"

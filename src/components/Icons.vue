@@ -424,4 +424,32 @@ defineProps({
       d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
     />
   </svg>
+  <svg
+    v-if="name === 'page'"
+    xmlns="http://www.w3.org/2000/svg"
+    class="ionicon"
+    viewBox="0 0 512 512"
+  >
+    <title>Reader</title>
+    <rect
+      x="96"
+      y="48"
+      width="320"
+      height="416"
+      rx="48"
+      ry="48"
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+    />
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="32"
+      d="M176 128h160M176 208h160M176 288h80"
+    />
+  </svg>
 </template>
