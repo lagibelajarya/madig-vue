@@ -4,22 +4,6 @@ import { ref, onMounted, reactive } from "vue";
 import { apiClient, urlApi } from "/src/api/axios-config";
 import { async } from "q";
 
-import coverDepan from "/src/assets/magazine/coverdepan.svg";
-import majalah1 from "/src/assets/magazine/isi-1.svg";
-import majalah2 from "/src/assets/magazine/isi-2.svg";
-import majalah3 from "/src/assets/magazine/isi-3.svg";
-import majalah4 from "/src/assets/magazine/isi-4.svg";
-import majalah5 from "/src/assets/magazine/isi-5.svg";
-import majalah6 from "/src/assets/magazine/isi-6.svg";
-import majalah7 from "/src/assets/magazine/isi-7.svg";
-import majalah8 from "/src/assets/magazine/isi-8.svg";
-import majalah9 from "/src/assets/magazine/isi-9.svg";
-import majalah10 from "/src/assets/magazine/isi-10.svg";
-import majalah11 from "/src/assets/magazine/isi-11.svg";
-import majalah12 from "/src/assets/magazine/isi-12.svg";
-import majalah13 from "/src/assets/magazine/isi-13.svg";
-import coverBelakang from "/src/assets/magazine/coverBelakang.svg";
-
 let toggleSearch = ref(false);
 let togglePopupAdd = ref(false);
 let togglePopupEdit = ref(false);
@@ -29,8 +13,10 @@ let togglePopupPgsUpdate = ref(false);
 let toggleLoadForm = ref(false);
 let toggleLoadFormEdit = ref(false);
 let toggleDetailMagazine = ref(false);
+let toggleListFound = ref(false);
 let loadingContent = ref(false);
 let loadingTrash = ref(false);
+let loadingListPage = ref(false);
 let patchCover = urlApi;
 
 // function closeElement(el1, el2, toggle) {
@@ -48,84 +34,11 @@ let patchCover = urlApi;
 //   "pgs-table-body-container-item.img-detail",
 //   togglePopupPgsDetailImg
 // );
-const pages = ref([
-  {
-    id: 1,
-    img: coverDepan,
-    file: "src/file/",
-  },
-  {
-    id: 2,
-    img: majalah1,
-    file: "src/file/",
-  },
-  {
-    id: 3,
-    img: majalah2,
-    file: "src/file/",
-  },
-  {
-    id: 4,
-    img: majalah3,
-    file: "src/file/",
-  },
-  {
-    id: 5,
-    img: majalah4,
-    file: "src/file/",
-  },
-  {
-    id: 6,
-    img: majalah5,
-    file: "src/file/",
-  },
-  {
-    id: 7,
-    img: majalah6,
-    file: "src/file/",
-  },
-  {
-    id: 8,
-    img: majalah7,
-    file: "src/file/",
-  },
-  {
-    id: 9,
-    img: majalah8,
-    file: "src/file/",
-  },
-  {
-    id: 10,
-    img: majalah9,
-    file: "src/file/",
-  },
-  {
-    id: 11,
-    img: majalah10,
-    file: "src/file/",
-  },
-  {
-    id: 12,
-    img: majalah11,
-    file: "src/file/",
-  },
-  {
-    id: 13,
-    img: majalah12,
-    file: "src/file/",
-  },
-  {
-    id: 14,
-    img: majalah13,
-    file: "src/file/",
-  },
-  {
-    id: 15,
-    img: coverBelakang,
-    file: "src/file/",
-  },
-]);
+
 const row = reactive({
+  items: [],
+});
+const pages = reactive({
   items: [],
 });
 const formData = reactive({
@@ -162,6 +75,16 @@ const getMagazine = async () => {
   row.items = data.data;
   toggleLoadForm.value = false;
   loadingContent.value = false;
+};
+const getPages = async (id) => {
+  loadingListPage.value = true;
+  toggleListFound.value = false;
+  const { data } = await apiClient.get(`/detail-magazine/${id}`);
+  pages.items = data.data;
+  loadingListPage.value = false;
+  if (pages.items == 0) {
+    toggleListFound.value = true;
+  }
 };
 const saveMagazine = async () => {
   let response = ref([]);
@@ -237,11 +160,13 @@ let pgsDetailPage = reactive({
   id: "",
   img: "",
   file: "",
+  page: "",
 });
-function setPgsDetaiPage(id, img, file) {
+function setPgsDetaiPage(id, img, file, page) {
   pgsDetailPage.id = id;
   pgsDetailPage.img = img;
   pgsDetailPage.file = file;
+  pgsDetailPage.page = page;
 }
 </script>
 <template>
@@ -354,36 +279,57 @@ function setPgsDetaiPage(id, img, file) {
             <div class="pgs-table-head-item">Action</div>
           </div>
           <div class="pgs-table-body">
+            <div v-if="loadingListPage" class="loader"></div>
             <div
+              v-else
               class="pgs-table-body-container"
-              v-for="item in pages"
+              v-for="item in pages.items"
               :key="item.id"
             >
-              <div class="pgs-table-body-container-item no">{{ item.id }}</div>
+              <div class="pgs-table-body-container-item no">
+                {{ item.page }}
+              </div>
               <div class="pgs-table-body-container-item img">
                 <div
                   class="pgs-table-body-container-item img-btn"
                   @click="
                     (togglePopupPgsDetailImg = !togglePopupPgsDetailImg),
-                      setPgsDetaiPage(item.id, item.img, item.file)
+                      setPgsDetaiPage(
+                        item.id,
+                        item.img_file,
+                        item.img_file,
+                        item.page
+                      )
                   "
                 >
                   image here
                 </div>
 
-                <!-- popup outside this div -->
+                <!-- popup pgs-table-body-container-item img-detail -->
+                <div
+                  v-if="togglePopupPgsDetailImg"
+                  class="pgs-table-body-container-item img-detail"
+                >
+                  <div
+                    :style="{
+                      background: `url(${pgsDetailPage.img})
+                    no-repeat center`,
+                    }"
+                  ></div>
+
+                  <button @click="togglePopupPgsDetailImg = false">
+                    CLOSE
+                  </button>
+                </div>
               </div>
               <div class="pgs-table-body-container-item file">
                 <p>
-                  {{ item.img }}
+                  {{ item.img_file }}
                 </p>
               </div>
               <div class="pgs-table-body-container-item action">
                 <div
-                  @click="
-                    (togglePopupPgsUpdate = !togglePopupPgsUpdate),
-                      setPgsDetaiPage(item.id, item.img, item.file)
-                  "
+                  @click="togglePopupPgsUpdate = true"
                   class="pgs-table-body-container-item action-edit"
                 >
                   <Icons name="pencil" />
@@ -393,19 +339,12 @@ function setPgsDetaiPage(id, img, file) {
                 </div>
               </div>
             </div>
-            <!-- popup pgs-table-body-container-item img-detail -->
-            <div
-              v-if="togglePopupPgsDetailImg"
-              class="pgs-table-body-container-item img-detail"
-            >
-              <div
-                :style="{
-                  background: `url(${pgsDetailPage.img})
-                        no-repeat center`,
-                }"
-              ></div>
-              <button @click="togglePopupPgsDetailImg = false">CLOSE</button>
+
+            <!-- if page not found -->
+            <div v-if="toggleListFound" class="pgs-table-not-found">
+              <p>The page does not exist or has not been filled in</p>
             </div>
+
             <div
               v-if="togglePopupPgsUpdate"
               class="pgs-table-popup-update-file"
@@ -532,7 +471,9 @@ function setPgsDetaiPage(id, img, file) {
           >
             <div
               class="DMagazine-container-2-bottom-info-action-pgs"
-              @click="togglePopupPgs = !togglePopupPgs"
+              @click="
+                (togglePopupPgs = !togglePopupPgs), getPages(detailMagazine.id)
+              "
             >
               PAGES
               <Icons name="page" />

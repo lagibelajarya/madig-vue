@@ -523,13 +523,16 @@
       border: solid 1px rgba(grey, 0.5);
       width: 100%;
       height: -webkit-fill-available;
-      overflow: hidden;
+      overflow: auto;
 
       & .pgs-table {
         font-size: 1.6rem;
         flex: 1;
         border-radius: 1rem;
         overflow: hidden;
+        min-width: 80rem;
+        display: flex;
+        flex-direction: column;
         &-head {
           padding: 1rem;
           display: grid;
@@ -543,7 +546,22 @@
         &-body {
           overflow: auto;
           height: -webkit-fill-available;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          & .loader {
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid var(--color-green);
+            width: 6rem;
+            height: 6rem;
+            min-height: 6rem;
+            min-width: 6rem;
+            margin: 2rem 0;
+          }
           &-container {
+            width: -webkit-fill-available;
+            align-items: stretch;
             padding: 1rem;
             display: grid;
             grid-template-columns: repeat(4, calc(100% / 4));
@@ -596,6 +614,7 @@
                 }
               }
               &.file {
+                word-break: break-all;
               }
               &.action {
                 display: flex;
@@ -624,6 +643,21 @@
                   }
                 }
               }
+            }
+          }
+          & .pgs-table-not-found {
+            height: -webkit-fill-available;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p {
+              font-size: 2rem;
+              font-weight: 500;
+              padding: 1rem 2rem;
+              margin: 2rem;
+              border-radius: 1rem;
+              background: rgba(red, 0.4);
+              color: white;
             }
           }
 
