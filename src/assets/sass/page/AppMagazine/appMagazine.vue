@@ -37,6 +37,10 @@
         align-items: center;
         img {
           width: 60vw;
+
+          @media screen and (max-width: 600px) {
+            width: 80vw;
+          }
         }
       }
     }
@@ -103,10 +107,12 @@
       background-color: white;
       transition: all 0.5s cubic-bezier(0.83, 0, 0.17, 1);
 
+      @media screen and (max-width: 500px) {
+        width: 50%;
+      }
       &-box {
         display: flex;
         flex-direction: column;
-        gap: 3rem;
         height: -webkit-fill-available;
         position: relative;
         &-close {

@@ -4,8 +4,9 @@
       <div class="appMagazine-content-box">
         <!-- flipbook view -->
         <div
-          v-if="toggleOptionView"
-          v-show="toggleCoverflow == false"
+          :class="[
+            toggleOptionView && toggleCoverflow == false ? 'show' : 'hide',
+          ]"
           class="flipbook-viewport"
         >
           <div class="container">
@@ -67,7 +68,6 @@
 
     <!-- tools btn -->
     <div class="appMagazine-tools-btn">
-      <!-- <div class="appMagazine-tools-btn-search"><Icons name="search" /></div> -->
       <div
         class="appMagazine-tools-btn-setting"
         @click="(toggleTools = !toggleTools), (toggleView = false)"
@@ -88,10 +88,6 @@
       class="appMagazine-tools-view"
     >
       <div class="appMagazine-tools-view-box">
-        <div class="appMagazine-tools-view-box-head">
-          <Icons name="search" />
-          <input type="text" placeholder="Search" />
-        </div>
         <div class="appMagazine-tools-view-box-content">
           <div
             v-for="item in pages"
@@ -198,7 +194,7 @@
   </div>
 </template>
 
-<script scoped setup>
+<script setup>
 import Icons from "../../components/Icons.vue";
 import { ref, reactive } from "vue";
 import coverDepan from "../../assets/magazine/coverdepan.svg";
@@ -411,8 +407,10 @@ function zoomIn() {
 function zoomOut() {
   $(".flipbook").turn("zoom", 1);
 }
-function turnPage(index = 10) {
-  $(".flipbook").turn("page", index);
+function turnPage(index) {
+  if (toggleOptionView.value && toggleCoverflow.value == false) {
+    $(".flipbook").turn("page", index);
+  }
 }
 
 function activeScroll(timedelay = 1) {

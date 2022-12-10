@@ -16,7 +16,7 @@
     class="mySwiper"
   >
     <swiper-slide v-for="item in pages">
-      <img v-bind:src="item" v-bind:alt="item" />
+      <img :src="item.img" v-bind:alt="item.img" />
     </swiper-slide>
   </swiper>
 </template>
@@ -137,11 +137,6 @@ export default {
     return {
       pages,
     };
-  },
-  methods: {
-    toSlider : {
-      
-    }
   },
   setup() {
     return {

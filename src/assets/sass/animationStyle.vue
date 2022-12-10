@@ -53,6 +53,8 @@
 .hide {
   opacity: 0;
   visibility: hidden;
+  height: 0;
+  width: 0;
 }
 .v-enter-active,
 .v-leave-active {
@@ -93,7 +95,7 @@
 }
 .loader-content {
   border-radius: 0.5rem;
-  background: linear-gradient(to right,#02334c ,#012b40, #012030);
+  background: linear-gradient(to right, #02334c, #012b40, #012030);
   background-size: 400% 400%;
   animation: 1s loader-content ease infinite;
 }
