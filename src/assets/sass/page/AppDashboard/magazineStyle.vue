@@ -689,6 +689,16 @@
                     height: 2rem;
                     fill: white;
                   }
+                  & .loader {
+                    border: 3px solid #f3f3f3;
+                    border-radius: 50%;
+                    border-top: 3px solid var(--color-green);
+                    max-width: 2rem;
+                    max-height: 2rem;
+                    min-width: unset;
+                    min-height: unset;
+                    margin: 0;
+                  }
                 }
               }
             }

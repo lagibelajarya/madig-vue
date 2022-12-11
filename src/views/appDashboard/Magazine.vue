@@ -18,6 +18,7 @@ let toggleListFound = ref(false);
 let toggleContainer2 = ref(false);
 let loadingContent = ref(false);
 let loadingTrash = ref(false);
+let loadingTrashPgs = ref(false);
 let loadingListPage = ref(false);
 let patchCover = urlApi;
 
@@ -77,6 +78,9 @@ const onCoverChangeEdit = (e) => {
 const onImgFilePage = (e) => {
   formDataPages.imgFile = e.target.files[0];
 };
+const onImgFilePageEdit = (e) => {
+  pgsDetailPage.img = e.target.files[0];
+};
 
 const getMagazine = async () => {
   loadingContent.value = true;
@@ -110,22 +114,18 @@ const saveMagazine = async () => {
   togglePopupAdd.value = !togglePopupAdd;
   getMagazine();
 };
-const savePages = async () => {
-  loadingListPage.value = true;
+const savePages = async (id) => {
   const fields = new FormData();
   fields.append("magazine_id", formDataPages.id);
   fields.append("img_file", formDataPages.imgFile);
   fields.append("page", formDataPages.page);
   const { data } = await apiClient.post("/detail-magazine", fields);
   togglePopupPgsAdd.value = false;
-  loadingListPage.value = false;
-  getPages();
+  getPages(id);
 };
 const updateMagazine = async (id) => {
   toggleLoadFormEdit.value = true;
-
   const fieldsEdit = new FormData();
-
   fieldsEdit.append("title", detailMagazine.title);
   fieldsEdit.append("description", detailMagazine.desc);
   fieldsEdit.append("cover", detailMagazine.cover);
@@ -138,16 +138,33 @@ const updateMagazine = async (id) => {
   togglePopupEdit.value = false;
   getMagazine();
 };
+const updatePages = async (id, idMagz) => {
+  const fieldsEdit = new FormData();
+  fieldsEdit.append("magazine_id", pgsDetailPage.idPgs);
+  fieldsEdit.append("img_file", pgsDetailPage.img);
+  fieldsEdit.append("page", pgsDetailPage.page);
+  const { data } = await apiClient.post(
+    `/detail-magazine/${id}?_method=PUT`,
+    fieldsEdit
+  );
+  togglePopupPgsUpdate.value = false;
+  getPages(idMagz);
+};
 
 const deleteMagazine = async () => {
   loadingTrash.value = true;
-
   const { data } = await apiClient.delete(`/magazine/${detailMagazine.id}`);
   alert("data berhasil di hapus");
-
   defaultDetailMagazine();
   loadingTrash.value = false;
   getMagazine();
+};
+const deletePages = async (id, idMagz) => {
+  loadingTrashPgs.value = true;
+  const { data } = await apiClient.delete(`/detail-magazine/${id}`);
+  loadingTrashPgs.value = false;
+  alert("data berhasil di hapus");
+  getPages(idMagz);
 };
 onMounted(() => {
   getMagazine();
@@ -178,11 +195,13 @@ function setDetailMagazine(id, title, cover, desc, pdf_file) {
 }
 let pgsDetailPage = reactive({
   id: "",
+  idPgs: "",
   img: "",
   page: "",
 });
-function setPgsDetailPage(id, img, page) {
+function setPgsDetailPage(id, idPgs, img, page) {
   pgsDetailPage.id = id;
+  pgsDetailPage.idPgs = idPgs;
   pgsDetailPage.img = img;
   pgsDetailPage.page = page;
 }
@@ -319,6 +338,7 @@ function setPgsDetailPage(id, img, page) {
                   @click="
                     (togglePopupPgsDetailImg = !togglePopupPgsDetailImg),
                       setPgsDetailPage(
+                        item.id,
                         item.magazine_id,
                         item.img_file,
                         item.page
@@ -355,6 +375,7 @@ function setPgsDetailPage(id, img, page) {
                   @click="
                     (togglePopupPgsUpdate = true),
                       setPgsDetailPage(
+                        item.id,
                         item.magazine_id,
                         item.img_file,
                         item.page
@@ -364,8 +385,12 @@ function setPgsDetailPage(id, img, page) {
                 >
                   <Icons name="pencil" />
                 </div>
-                <div class="pgs-table-body-container-item action-delete">
-                  <Icons name="trash" />
+                <div
+                  @click="deletePages(item.id, detailMagazine.id)"
+                  class="pgs-table-body-container-item action-delete"
+                >
+                  <div v-if="loadingTrashPgs" class="loader"></div>
+                  <Icons v-else name="trash" />
                 </div>
               </div>
             </div>
@@ -376,8 +401,9 @@ function setPgsDetailPage(id, img, page) {
             </div>
 
             <!-- popup page update -->
-            <div
+            <form
               v-if="togglePopupPgsUpdate"
+              @submit.prevent="updatePages(pgsDetailPage.id, detailMagazine.id)"
               class="pgs-table-popup-update-file"
             >
               <div class="pgs-table-popup-update-file-container">
@@ -389,21 +415,31 @@ function setPgsDetailPage(id, img, page) {
                 </div>
                 <div class="pgs-table-popup-update-file-box">
                   <div class="pgs-table-popup-update-file-box-input">
-                    <input type="number" required placeholder="Id Magazine" />
+                    <input
+                      v-model="pgsDetailPage.idPgs"
+                      type="number"
+                      required
+                      placeholder="Id Magazine"
+                    />
                   </div>
                   <div class="pgs-table-popup-update-file-box-input">
-                    <input type="number" required placeholder="No Page" />
+                    <input
+                      v-model="pgsDetailPage.page"
+                      type="number"
+                      required
+                      placeholder="No Page"
+                    />
                   </div>
-                  <input type="file" required />
-                  <button>submit</button>
+                  <input type="file" required v-on:change="onImgFilePageEdit" />
+                  <button type="submit">submit</button>
                 </div>
               </div>
-            </div>
+            </form>
 
             <!-- popup page add-->
             <form
               v-if="togglePopupPgsAdd"
-              @submit.prevent="savePages()"
+              @submit.prevent="savePages(detailMagazine.id)"
               class="pgs-table-popup-update-file"
             >
               <div class="pgs-table-popup-update-file-container">
