@@ -40,10 +40,13 @@
     transition: max-width 1s;
 
     overflow: hidden;
-    max-width: 0;
+    max-width: 0 !important;
   }
   &-50rem {
     max-width: 50rem;
+  }
+  &-30rem {
+    max-width: 30rem !important;
   }
 }
 .show {

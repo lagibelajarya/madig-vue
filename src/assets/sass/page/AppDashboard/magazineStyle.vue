@@ -108,6 +108,7 @@
           position: relative;
           justify-content: center;
           & .btn-add-magazine {
+            z-index: 100;
             position: fixed;
             bottom: 2rem;
             right: 32rem;
@@ -177,12 +178,33 @@
     &-container-2 {
       display: flex;
       flex-direction: column;
-
       max-width: 30rem;
       width: 30rem;
       height: 100%;
       background: white;
       height: auto;
+      transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
+      position: relative;
+      &-close {
+        position: absolute;
+        top: 0;
+        left: -3rem;
+        height: -webkit-fill-available;
+        width: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: rgba(black, 0.1);
+        backdrop-filter: blur(1.6rem);
+        transition: all 0.2s;
+        &:hover {
+          background-color: rgba(white, 0.5);
+        }
+        svg {
+          height: 2rem;
+        }
+      }
       &-top {
         box-shadow: 0 4px 8px rgba($color: #000000, $alpha: 0.2);
         position: relative;
@@ -509,6 +531,13 @@
       p {
         font-size: 2rem;
         font-weight: 600;
+
+        span {
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+          background: var(--darkGreen);
+          color: white;
+        }
       }
       svg {
         cursor: pointer;
@@ -533,6 +562,24 @@
         min-width: 80rem;
         display: flex;
         flex-direction: column;
+        position: relative;
+        &-btn-add {
+          position: absolute;
+          bottom: 2rem;
+          right: 2rem;
+          height: 4rem;
+          width: 4rem;
+          border-radius: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 2px 2px 11px rgba(black, 0.1);
+          background: var(--color-green);
+          cursor: pointer;
+          svg {
+            height: 2rem;
+          }
+        }
         &-head {
           padding: 1rem;
           display: grid;
@@ -610,6 +657,7 @@
                     background: white;
                     border: solid 1px rgba(black, 0.6);
                     width: 100%;
+                    cursor: pointer;
                   }
                 }
               }
@@ -663,28 +711,38 @@
 
           & .pgs-table-popup-update-file {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 2rem;
-            border-radius: 1rem;
-            height: fit-content;
-            width: fit-content;
-            background-color: white;
-            box-shadow: 4px 4px 2rem rgba(black, 0.3);
+            top: 0;
+            left: 0;
+            width: -webkit-fill-available;
+            height: -webkit-fill-available;
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(black, 0.3);
+
+            &-container {
+              padding: 2rem;
+              border-radius: 1rem;
+              height: fit-content;
+              width: fit-content;
+              background-color: white;
+              box-shadow: 4px 4px 2rem rgba(black, 0.3);
+              display: flex;
+              flex-direction: column;
+              gap: 2rem;
+            }
             &-head {
               display: flex;
               align-items: center;
               justify-content: space-between;
+              gap: 2rem;
               p {
                 &:nth-child(1) {
                   font-size: 2rem;
                   font-weight: 500;
                 }
                 &:nth-child(2) {
+                  cursor: pointer;
                   svg {
                     height: 2rem;
                   }
@@ -692,9 +750,23 @@
               }
             }
             &-box {
-              input {
+              display: flex;
+              flex-direction: column;
+              gap: 2rem;
+              &-input {
+                width: -webkit-fill-available;
+                border-bottom: solid 1px var(--color-green);
+                input {
+                  width: 100%;
+                  padding: 0.5rem;
+                  border-radius: 0.5rem;
+                  border: none;
+                  outline: none;
+                  background: white;
+                }
               }
               button {
+                flex: 1;
                 outline: none;
                 border: none;
                 cursor: pointer;

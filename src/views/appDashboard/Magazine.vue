@@ -9,11 +9,13 @@ let togglePopupAdd = ref(false);
 let togglePopupEdit = ref(false);
 let togglePopupPgs = ref(false);
 var togglePopupPgsDetailImg = ref(false);
+let togglePopupPgsAdd = ref(false);
 let togglePopupPgsUpdate = ref(false);
 let toggleLoadForm = ref(false);
 let toggleLoadFormEdit = ref(false);
 let toggleDetailMagazine = ref(false);
 let toggleListFound = ref(false);
+let toggleContainer2 = ref(false);
 let loadingContent = ref(false);
 let loadingTrash = ref(false);
 let loadingListPage = ref(false);
@@ -47,6 +49,11 @@ const formData = reactive({
   cover: "",
   pdf_file: "",
 });
+const formDataPages = reactive({
+  id: "",
+  imgFile: "",
+  page: "",
+});
 const resetForm = () => {
   formData.title = null;
   formData.description = null;
@@ -66,6 +73,9 @@ const onPdfChangeEdit = (e) => {
 };
 const onCoverChangeEdit = (e) => {
   detailMagazine.cover = e.target.files[0];
+};
+const onImgFilePage = (e) => {
+  formDataPages.imgFile = e.target.files[0];
 };
 
 const getMagazine = async () => {
@@ -88,7 +98,6 @@ const getPages = async (id) => {
 };
 const saveMagazine = async () => {
   let response = ref([]);
-
   const fields = new FormData();
   fields.append("title", formData.title);
   fields.append("description", formData.description);
@@ -100,6 +109,16 @@ const saveMagazine = async () => {
   resetForm();
   togglePopupAdd.value = !togglePopupAdd;
   getMagazine();
+};
+const savePages = async () => {
+  loadingListPage.value = true;
+  const fields = new FormData();
+  fields.append("magazine_id", formDataPages.id);
+  fields.append("img_file", formDataPages.imgFile);
+  fields.append("page", formDataPages.page);
+  const { data } = await apiClient.post("/detail-magazine");
+  loadingListPage.value = false;
+  getPages();
 };
 const updateMagazine = async (id) => {
   toggleLoadFormEdit.value = true;
@@ -159,13 +178,11 @@ function setDetailMagazine(id, title, cover, desc, pdf_file) {
 let pgsDetailPage = reactive({
   id: "",
   img: "",
-  file: "",
   page: "",
 });
-function setPgsDetaiPage(id, img, file, page) {
+function setPgsDetailPage(id, img, page) {
   pgsDetailPage.id = id;
   pgsDetailPage.img = img;
-  pgsDetailPage.file = file;
   pgsDetailPage.page = page;
 }
 </script>
@@ -265,13 +282,19 @@ function setPgsDetaiPage(id, img, file, page) {
   <div class="popup-pgs-magazine" :class="[togglePopupPgs ? 'show' : 'hide']">
     <div class="popup-pgs-magazine-container">
       <div class="popup-pgs-magazine-container-head">
-        <p>{{ detailMagazine.title }} pages</p>
+        <p>
+          {{ detailMagazine.title }} pages
+          <span>ID : {{ detailMagazine.id }}</span>
+        </p>
         <div @click="togglePopupPgs = !togglePopupPgs">
           <Icons name="close" />
         </div>
       </div>
       <div class="popup-pgs-magazine-container-box">
         <div class="pgs-table">
+          <div class="pgs-table-btn-add" @click="togglePopupPgsAdd = true">
+            <Icons name="plus" />
+          </div>
           <div class="pgs-table-head">
             <div class="pgs-table-head-item">No</div>
             <div class="pgs-table-head-item">Image</div>
@@ -294,12 +317,7 @@ function setPgsDetaiPage(id, img, file, page) {
                   class="pgs-table-body-container-item img-btn"
                   @click="
                     (togglePopupPgsDetailImg = !togglePopupPgsDetailImg),
-                      setPgsDetaiPage(
-                        item.id,
-                        item.img_file,
-                        item.img_file,
-                        item.page
-                      )
+                      setPgsDetailPage(item.id, item.img_file, item.page)
                   "
                 >
                   image here
@@ -329,7 +347,10 @@ function setPgsDetaiPage(id, img, file, page) {
               </div>
               <div class="pgs-table-body-container-item action">
                 <div
-                  @click="togglePopupPgsUpdate = true"
+                  @click="
+                    (togglePopupPgsUpdate = true),
+                      setPgsDetailPage(item.id, item.img_file, item.page)
+                  "
                   class="pgs-table-body-container-item action-edit"
                 >
                   <Icons name="pencil" />
@@ -345,21 +366,66 @@ function setPgsDetaiPage(id, img, file, page) {
               <p>The page does not exist or has not been filled in</p>
             </div>
 
+            <!-- popup page update -->
             <div
               v-if="togglePopupPgsUpdate"
               class="pgs-table-popup-update-file"
             >
-              <div class="pgs-table-popup-update-file-head">
-                <p>Choose File {{ pgsDetailPage.id }}</p>
-                <p @click="togglePopupPgsUpdate = false">
-                  <Icons name="close" />
-                </p>
-              </div>
-              <div class="pgs-table-popup-update-file-box">
-                <input type="file" />
-                <button>submit</button>
+              <div class="pgs-table-popup-update-file-container">
+                <div class="pgs-table-popup-update-file-head">
+                  <p>Update Page {{ pgsDetailPage.page }}</p>
+                  <p @click="togglePopupPgsUpdate = false">
+                    <Icons name="close" />
+                  </p>
+                </div>
+                <div class="pgs-table-popup-update-file-box">
+                  <div class="pgs-table-popup-update-file-box-input">
+                    <input type="number" required placeholder="Id Magazine" />
+                  </div>
+                  <div class="pgs-table-popup-update-file-box-input">
+                    <input type="number" required placeholder="No Page" />
+                  </div>
+                  <input type="file" required />
+                  <button>submit</button>
+                </div>
               </div>
             </div>
+
+            <!-- popup page add-->
+            <form
+              v-if="togglePopupPgsAdd"
+              @submit.prevent="savePages()"
+              class="pgs-table-popup-update-file"
+            >
+              <div class="pgs-table-popup-update-file-container">
+                <div class="pgs-table-popup-update-file-head">
+                  <p>Add Page {{ detailMagazine.title }}</p>
+                  <p @click="togglePopupPgsAdd = false">
+                    <Icons name="close" />
+                  </p>
+                </div>
+                <div class="pgs-table-popup-update-file-box">
+                  <div class="pgs-table-popup-update-file-box-input">
+                    <input
+                      type="number"
+                      required
+                      placeholder="Id Magazine"
+                      v-model="formDataPages.id"
+                    />
+                  </div>
+                  <div class="pgs-table-popup-update-file-box-input">
+                    <input
+                      type="number"
+                      required
+                      placeholder="No Page"
+                      v-model="formDataPages.page"
+                    />
+                  </div>
+                  <input type="file" required v-on:change="onImgFilePage()" />
+                  <button type="submit">submit</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -436,7 +502,8 @@ function setPgsDetaiPage(id, img, file, page) {
                 item.cover,
                 item.description,
                 item.pdf_file
-              )
+              ),
+                (toggleContainer2 = true)
             "
           >
             <div class="DMagazine-container-1-content-info-box-img">
@@ -452,7 +519,16 @@ function setPgsDetaiPage(id, img, file, page) {
     </div>
 
     <!-- profile right -->
-    <div class="DMagazine-container-2">
+    <div
+      class="DMagazine-container-2"
+      :class="[toggleContainer2 ? 'width-30rem' : 'width-0']"
+    >
+      <div
+        class="DMagazine-container-2-close"
+        @click="toggleContainer2 = !toggleContainer2"
+      >
+        <Icons name="double-left" />
+      </div>
       <div class="DMagazine-container-2-top">
         <div class="DMagazine-container-2-top-img">
           <img v-bind:src="detailMagazine.cover" alt="" />
