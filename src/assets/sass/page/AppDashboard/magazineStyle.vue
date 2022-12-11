@@ -640,7 +640,7 @@
                   padding: 2rem;
                   background-color: white;
                   border-radius: 1rem;
-                  box-shadow: 0 0 18px rgba(black, 0.5);
+                  box-shadow: 0 0 18px rgba(black, 0.3);
                   display: flex;
                   flex-direction: column;
                   gap: 1rem;

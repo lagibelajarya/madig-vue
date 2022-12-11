@@ -116,7 +116,8 @@ const savePages = async () => {
   fields.append("magazine_id", formDataPages.id);
   fields.append("img_file", formDataPages.imgFile);
   fields.append("page", formDataPages.page);
-  const { data } = await apiClient.post("/detail-magazine");
+  const { data } = await apiClient.post("/detail-magazine", fields);
+  togglePopupPgsAdd.value = false;
   loadingListPage.value = false;
   getPages();
 };
@@ -317,7 +318,11 @@ function setPgsDetailPage(id, img, page) {
                   class="pgs-table-body-container-item img-btn"
                   @click="
                     (togglePopupPgsDetailImg = !togglePopupPgsDetailImg),
-                      setPgsDetailPage(item.id, item.img_file, item.page)
+                      setPgsDetailPage(
+                        item.magazine_id,
+                        item.img_file,
+                        item.page
+                      )
                   "
                 >
                   image here
@@ -330,7 +335,7 @@ function setPgsDetailPage(id, img, page) {
                 >
                   <div
                     :style="{
-                      background: `url(${pgsDetailPage.img})
+                      background: `url(${patchCover + pgsDetailPage.img})
                     no-repeat center`,
                     }"
                   ></div>
@@ -349,7 +354,11 @@ function setPgsDetailPage(id, img, page) {
                 <div
                   @click="
                     (togglePopupPgsUpdate = true),
-                      setPgsDetailPage(item.id, item.img_file, item.page)
+                      setPgsDetailPage(
+                        item.magazine_id,
+                        item.img_file,
+                        item.page
+                      )
                   "
                   class="pgs-table-body-container-item action-edit"
                 >
@@ -421,7 +430,7 @@ function setPgsDetailPage(id, img, page) {
                       v-model="formDataPages.page"
                     />
                   </div>
-                  <input type="file" required v-on:change="onImgFilePage()" />
+                  <input type="file" required v-on:change="onImgFilePage" />
                   <button type="submit">submit</button>
                 </div>
               </div>
