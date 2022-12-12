@@ -379,10 +379,8 @@ let downloadWithAxios = (url, title) => {
         padding: 3rem;
         border-radius: 1rem;
         display: flex;
-
         justify-content: space-between;
         gap: 3rem;
-
         background-position: center !important;
         background-size: cover !important;
         background-repeat: no-repeat !important;
