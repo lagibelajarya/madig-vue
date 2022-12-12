@@ -272,7 +272,6 @@ let downloadWithAxios = (url, title) => {
               <button
                 v-if="route.params.id == 1 && loadingContent == false"
                 @click="goToNavigation('AppMagazine')"
-                onclick="window.location.reload()"
               >
                 Read Now
               </button>
