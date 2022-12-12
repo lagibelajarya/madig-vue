@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper.cdc0426e.js";import{o,e as r}from"./index.bb9017d7.js";const t={};function c(n,s){return o(),r("div",null,"hello from teams")}const _=e(t,[["render",c]]);export{_ as default};
