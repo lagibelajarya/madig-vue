@@ -15,7 +15,9 @@
                 v-for="item in pages"
                 class="flipbook-page"
                 :style="{
-                  background: `url(${item.img}) no-repeat center `,
+                  background: `url(${
+                    item.img
+                  }) no-repeat center `,
                   backgroundSize: 'cover',
                 }"
               ></div>
@@ -57,7 +59,11 @@
           class="default-book"
         >
           <div v-for="item in pages" class="default-book-page">
-            <img v-bind:src="item.img" :alt="item.img" :id="item.id" />
+            <img
+              v-bind:src="item.img"
+              :alt="item.img"
+              :id="item.id"
+            />
           </div>
         </div>
         <div v-if="toggleCoverflow">
@@ -196,7 +202,7 @@
 
 <script setup>
 import Icons from "../../components/Icons.vue";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import coverDepan from "../../assets/magazine/coverdepan.svg";
 import majalah1 from "../../assets/magazine/isi-1.svg";
 import majalah2 from "../../assets/magazine/isi-2.svg";
@@ -214,7 +220,10 @@ import majalah13 from "../../assets/magazine/isi-13.svg";
 import video from "../../assets/magazine/videoMaspion.webp";
 import coverBelakang from "../../assets/magazine/coverBelakang.svg";
 import SliderAppMagazine from "../../components/SliderAppMagazine.vue";
-
+import { useRouter } from "vue-router";
+import { apiClient, urlApi } from "/src/api/axios-config";
+import { async } from "q";
+const router = useRouter();
 let toggleView = ref(false);
 let toggleTools = ref(false);
 let toggleMusic = ref(false);
@@ -283,26 +292,40 @@ const pages = ref([
     img: coverBelakang,
   },
 ]);
-function closeElement(el1, el2, toggle) {
-  document.addEventListener("click", (e) => {
-    if (
-      !document.querySelector(`.${el1}`).contains(e.target) &&
-      !document.querySelector(`.${el2}`).contains(e.target)
-    ) {
-      toggle.value = false;
-    }
-  });
+
+// const getPages = async () => {
+//   const { data } = await apiClient.get(`/detail-magazine/1`);
+//   pages.items = data.data;
+// };
+// onMounted(async () => {
+//   await getPages();
+//   loadApp();
+// });
+// let pages = reactive({
+//   items: [],
+// });
+if (router.hasRoute("AppMagazine")) {
+  function closeElement(el1, el2, toggle) {
+    document.addEventListener("click", (e) => {
+      if (
+        !document.querySelector(`.${el1}`).contains(e.target) &&
+        !document.querySelector(`.${el2}`).contains(e.target)
+      ) {
+        toggle.value = false;
+      }
+    });
+  }
+  closeElement(
+    "appMagazine-tools-btn-setting ",
+    "appMagazine-tools-general",
+    toggleTools
+  );
+  closeElement(
+    "appMagazine-tools-btn-view ",
+    "appMagazine-tools-view",
+    toggleView
+  );
 }
-closeElement(
-  "appMagazine-tools-btn-setting ",
-  "appMagazine-tools-general",
-  toggleTools
-);
-closeElement(
-  "appMagazine-tools-btn-view ",
-  "appMagazine-tools-view",
-  toggleView
-);
 
 let audio = new Audio(
   "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"

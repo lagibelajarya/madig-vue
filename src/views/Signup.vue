@@ -2,16 +2,15 @@
 import { useRouter } from "vue-router";
 import Icons from "../components/Icons.vue";
 const router = useRouter();
-const gotoDashboard = () => router.push({ name: "dashboard" });
+const gotoDashboard = () => router.push({ name: "dashboardMagazine" });
+console.log(router.hasRoute('signupa'));
 </script>
 <template>
-  <div class="loader-content">
-    
-  </div>
+  <div class="loader-content"></div>
   <div class="signup">
     <div class="signup-container">
       <div class="signup-box">
-        <p class="signup-box-title">Signup To Dashboard</p>
+        <p class="signup-box-title">Sign up To Dashboard</p>
         <form class="signup-box-form" @submit.prevent="gotoDashboard">
           <div class="signup-box-form-input">
             <Icons name="profile" />

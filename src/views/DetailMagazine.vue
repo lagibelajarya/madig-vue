@@ -5,7 +5,6 @@ import { useRouter, useRoute, RouterLink } from "vue-router";
 import { ref, reactive, onMounted } from "vue";
 import { urlApi, apiClient } from "/src/api/axios-config";
 import axios from "axios";
-import { $ } from "dom7";
 
 const router = useRouter();
 const route = useRoute();
@@ -19,6 +18,7 @@ let toggleBookmark = ref(false);
 let toggleShare = ref(false);
 let urlLink = window.location.href;
 let routeId = route.params.id;
+
 const rowDetail = reactive({
   items: [],
 });
@@ -28,11 +28,10 @@ let getDetailMagazine = async () => {
     behavior: "smooth",
   });
   loadingContent.value = true;
-  const { data } = await apiClient.get(`/magazine/${routeId}`);
+  const { data } = await apiClient.get(`/magazine/${route.params.id}`);
   rowDetail.items = data.data;
   loadingContent.value = false;
 };
-
 onMounted(() => {
   getDetailMagazine();
 });
@@ -72,17 +71,17 @@ function toClipboard() {
     toggleCopy.value = false;
   }, 1000);
 }
-function toShare() {
-  toggleShare.value = true;
-  window.addEventListener("click", (e) => {
-    if (
-      !document.querySelector(".btn-share").contains(e.target) &&
-      !document.querySelector(".popup-share").contains(e.target)
-    ) {
-      toggleShare.value = false;
-    }
-  });
-}
+// function toShare() {
+//   toggleShare.value = true;
+//   window.addEventListener("click", (e) => {
+//     if (
+//       !document.querySelector(".btn-share").contains(e.target) &&
+//       !document.querySelector(".popup-share").contains(e.target)
+//     ) {
+//       toggleShare.value = false;
+//     }
+//   });
+// }
 function forceFileDownload(response, title) {
   console.log(title);
   const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -172,18 +171,15 @@ let downloadWithAxios = (url, title) => {
               <div
                 class="detail-magazine-container-info-title-content-category-item"
               >
-                <button
-                  @click="
-                    downloadWithAxios(
-                      patchCover + rowDetail.items.pdf_file,
-                      rowDetail.items.pdf_file
-                    )
-                  "
+                <a
+                  href="/src/assets/magazine/coverDepan.svg"
+                  v-if="route.params.id == 1"
                   class="btn-download"
+                  download
                 >
                   <Icons name="download" />
                   <p>Download</p>
-                </button>
+                </a>
               </div>
             </div>
             <div class="detail-magazine-container-info-title-content-action">
@@ -210,19 +206,41 @@ let downloadWithAxios = (url, title) => {
                     <p>Remove To Bookmark</p>
                   </div>
                 </button>
-                <button @click="toShare()" class="btn-share">
+                <button
+                  v-on:mouseover="toggleShare = true"
+                  v-on:mouseleave="toggleShare = false"
+                  class="btn-share"
+                >
                   <Icons name="share" />
                 </button>
                 <!-- popup social media -->
                 <div
                   class="popup-share"
                   :class="[toggleShare ? 'show' : 'hide']"
+                  v-on:mouseover="toggleShare = true"
+                  v-on:mouseleave="toggleShare = false"
                 >
                   <div class="popup-share-container">
                     <div class="popup-share-container-icon">
-                      <div><Icons name="facebook" /></div>
-                      <div><Icons name="twitter" /></div>
-                      <div><Icons name="instagram" /></div>
+                      <a
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://unclebigbay.hashnode.dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icons name="facebook" />
+                      </a>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://twitter.com/intent/tweet?text=Apa yang ingin anda tulis untuk aplikasi majalah digital kita? By Nesfol"
+                        ><Icons name="twitter"
+                      /></a>
+                      <a
+                        target="_blank"
+                        href="https://wa.me/?text=Bagikan Aplikasi majalah digital Nesfol"
+                        data-action="share/whatsapp/share"
+                        ><Icons name="whatsapp"
+                      /></a>
                     </div>
                     <div class="popup-share-container-link">
                       <p class="popup-share-container-link-target">
@@ -248,7 +266,14 @@ let downloadWithAxios = (url, title) => {
                 class="loader-content"
                 style="height: 4rem; width: "
               ></div>
-              <button v-else @click="goToNavigation('AppMagazine')">
+              <button v-if="route.params.id != 1 && loadingContent == false">
+                Cooming Soon
+              </button>
+              <button
+                v-if="route.params.id == 1 && loadingContent == false"
+                @click="goToNavigation('AppMagazine')"
+                onclick="window.location.reload()"
+              >
                 Read Now
               </button>
             </div>
@@ -581,8 +606,8 @@ let downloadWithAxios = (url, title) => {
             & .popup-share {
               position: absolute;
               top: -13rem;
-              left: 50%;
               transition: all 0.3s linear;
+
               &-container {
                 display: flex;
                 flex-direction: column;
@@ -591,10 +616,14 @@ let downloadWithAxios = (url, title) => {
                 border-radius: 1.4rem;
                 gap: 1rem;
                 position: absolute;
+                width: fit-content;
+                @media screen and (max-width: 600px) {
+                  width: 70vw;
+                }
                 &-icon {
                   display: flex;
                   gap: 0.5rem;
-                  div {
+                  a {
                     cursor: pointer;
                     height: 4rem;
                     width: 4rem;

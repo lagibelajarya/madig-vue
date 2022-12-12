@@ -41,6 +41,10 @@
               <span>&#10003;</span>
               <span>Auto Scroll</span>
             </div>
+            <div>
+              <span>&#10003;</span>
+              <span>Slider Mode</span>
+            </div>
           </div>
         </div>
       </div>
@@ -114,6 +118,9 @@ export default {
       &-box {
         display: flex;
         gap: 5rem;
+        @media screen and (max-width: 400px) {
+          gap: 3rem;
+        }
         &-1,
         &-2 {
           display: flex;

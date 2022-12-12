@@ -19,6 +19,7 @@
         background-color: white;
         gap: 3rem;
         border-bottom: solid 0.5px rgba(#000000, 0.3);
+
         &-title {
           display: flex;
           align-items: center;
@@ -111,7 +112,7 @@
             z-index: 100;
             position: fixed;
             bottom: 2rem;
-            right: 32rem;
+            right: 2rem;
             height: 5rem;
             width: 5rem;
             border-radius: 100%;
@@ -185,6 +186,14 @@
       height: auto;
       transition: all 0.3s cubic-bezier(0.83, 0, 0.17, 1);
       position: relative;
+      @media screen and (max-width: 800px) {
+        position: fixed;
+        right: 0;
+        top: 7rem;
+        height: -webkit-fill-available;
+        max-width: 20rem;
+        width: 20rem;
+      }
       &-close {
         position: absolute;
         top: 0;
@@ -213,6 +222,9 @@
           height: 35rem;
           overflow: hidden;
           position: relative;
+          @media screen and (max-width: 800px) {
+            height: 30rem;
+          }
           img {
             position: absolute;
             height: 100%;
@@ -249,6 +261,7 @@
           &-action {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
             &-pgs {
               padding: 1rem 2rem;
               font-size: 1.6rem;
@@ -301,6 +314,7 @@
           }
           &-desc {
             font-size: 1.4rem;
+            overflow-y: auto;
           }
         }
       }
@@ -321,6 +335,10 @@
   transition: all;
   overflow: auto;
   padding: 5rem 0;
+  @media screen and (max-width: 500px) {
+    align-items: flex-end;
+    padding: 0;
+  }
   &-container {
     border-radius: 1rem;
     padding: 2rem;
@@ -332,7 +350,14 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    // height: 100%;
+    @media screen and (max-width: 768px) {
+      min-width: unset;
+      width: 80%;
+    }
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      border-radius: 1rem 1rem 0 0;
+    }
     &-head {
       display: flex;
       justify-content: space-between;
@@ -408,6 +433,10 @@
   margin-left: -7rem;
   transition: all;
   padding: 5rem 0;
+  @media screen and (max-width: 500px) {
+    align-items: flex-end;
+    padding: 0;
+  }
   &-container {
     border-radius: 1rem;
     padding: 2rem;
@@ -419,6 +448,15 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    @media screen and (max-width: 768px) {
+      width: 80%;
+      min-width: unset;
+      max-height: unset;
+    }
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      border-radius: 1rem 1rem 0 0;
+    }
     &-head {
       display: flex;
       justify-content: space-between;
@@ -441,9 +479,11 @@
       padding: 1rem;
       width: 100%;
       height: 100%;
-
       &-cover {
         width: 50%;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
         &-img {
           position: relative;
           height: 100%;
@@ -464,6 +504,9 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        @media screen and (max-width: 768px) {
+          width: 100%;
+        }
         & .input-box {
           display: flex;
           flex-direction: column;
@@ -512,6 +555,10 @@
   transition: all;
   overflow: auto;
   padding: 5rem 0;
+  @media screen and (max-width: 500px) {
+    align-items: flex-end;
+    padding: 0;
+  }
   &-container {
     border-radius: 1rem;
     padding: 2rem;
@@ -523,7 +570,10 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    // height: 100%;
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      border-radius: 1rem 1rem 0 0;
+    }
     &-head {
       display: flex;
       justify-content: space-between;

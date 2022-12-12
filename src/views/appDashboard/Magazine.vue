@@ -480,14 +480,14 @@ function setPgsDetailPage(id, idPgs, img, page) {
   <div class="DMagazine">
     <div class="DMagazine-container-1">
       <!-- Dmagazine header -->
-      <div class="dashboard-container-1-head">
-        <div class="dashboard-container-1-head-title">
+      <div class="DMagazine-container-1-head">
+        <div class="DMagazine-container-1-head-title">
           <img src="/src/assets/img/logoGreen.svg" alt="" />
           <p>Dashboard</p>
         </div>
 
         <div
-          class="dashboard-container-1-head-search"
+          class="DMagazine-container-1-head-search"
           v-on:mouseover="toggleSearch = true"
           v-on:mouseleave="toggleSearch = false"
           :class="{ active: toggleSearch }"
@@ -503,27 +503,24 @@ function setPgsDetailPage(id, idPgs, img, page) {
       </div>
       <!-- content Dmagazine -->
       <div class="DMagazine-container-1-content">
-        <div class="dashboard-container-1-content-head">
+        <div class="DMagazine-container-1-content-head">
           <RouterLink
             active-class="active"
             to=""
-            class="dashboard-container-1-content-head-item"
+            class="DMagazine-container-1-content-head-item"
           >
             <Icons name="grid" />
             <p>All</p>
           </RouterLink>
-          <RouterLink to="" class="dashboard-container-1-content-head-item">
+          <RouterLink to="" class="DMagazine-container-1-content-head-item">
             <Icons name="book-education" />
             <p>Education</p>
           </RouterLink>
-          <RouterLink to="" class="dashboard-container-1-content-head-item">
+          <RouterLink to="" class="DMagazine-container-1-content-head-item">
             <Icons name="book-globe" />
             <p>Kuliner</p>
           </RouterLink>
-          <RouterLink to="" class="dashboard-container-1-content-head-item">
-            <Icons name="book-style" />
-            <p>Style</p>
-          </RouterLink>
+
         </div>
         <div class="DMagazine-container-1-content-info">
           <!-- content dmagazine box -->
