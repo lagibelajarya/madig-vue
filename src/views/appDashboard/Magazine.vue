@@ -85,7 +85,6 @@ const onImgFilePageEdit = (e) => {
 const getMagazine = async () => {
   loadingContent.value = true;
   const { data } = await apiClient.get("/magazine");
-  console.log(data);
   row.items = data.data;
   toggleLoadForm.value = false;
   loadingContent.value = false;
@@ -276,11 +275,11 @@ function setPgsDetailPage(id, idPgs, img, page) {
           </div>
           <div class="input-box">
             <p>Magazine Cover</p>
-            <input type="file" required v-on:change="onCoverChangeEdit" />
+            <input type="file" v-on:change="onCoverChangeEdit" />
           </div>
           <div class="input-box">
             <p>Magazine Pdf File</p>
-            <input type="file" required v-on:change="onPdfChangeEdit" />
+            <input type="file" v-on:change="onPdfChangeEdit" />
           </div>
           <div class="input-box">
             <p>Magazine Description</p>
@@ -520,7 +519,6 @@ function setPgsDetailPage(id, idPgs, img, page) {
             <Icons name="book-globe" />
             <p>Kuliner</p>
           </RouterLink>
-
         </div>
         <div class="DMagazine-container-1-content-info">
           <!-- content dmagazine box -->

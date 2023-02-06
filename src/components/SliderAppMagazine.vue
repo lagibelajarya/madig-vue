@@ -21,16 +21,19 @@
   </swiper>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .swiper {
-  height: 43.8rem;
+  height: 83.8rem;
   padding-bottom: 10rem;
+
   &-wrapper {
-    height: 43.8rem;
+    height: 63.8rem;
   }
   &-slide {
-    width: 31rem;
-    height: 43.8rem;
+    width: 51rem;
+    height: 63.8rem;
+    display: flex;
+    justify-content: center;
     img {
       // width: 20rem;
       height: 100%;
@@ -42,20 +45,20 @@
 // Import Swiper Vue.js components
 
 import coverDepan from "/src/assets/magazine/coverdepan.svg";
-import majalah1 from "/src/assets/magazine/isi-1.svg";
-import majalah2 from "/src/assets/magazine/isi-2.svg";
-import majalah3 from "/src/assets/magazine/isi-3.svg";
-import majalah4 from "/src/assets/magazine/isi-4.svg";
-import majalah5 from "/src/assets/magazine/isi-5.svg";
-import majalah6 from "/src/assets/magazine/isi-6.svg";
-import majalah7 from "/src/assets/magazine/isi-7.svg";
-import majalah8 from "/src/assets/magazine/isi-8.svg";
-import majalah9 from "/src/assets/magazine/isi-9.svg";
-import majalah10 from "/src/assets/magazine/isi-10.svg";
-import majalah11 from "/src/assets/magazine/isi-11.svg";
-import majalah12 from "/src/assets/magazine/isi-12.svg";
-import majalah13 from "/src/assets/magazine/isi-13.svg";
-import video from "/src/assets/magazine/videoMaspion.webp";
+import majalah1 from "/src/assets/magazine/1.svg";
+import majalah2 from "/src/assets/magazine/2.svg";
+import majalah3 from "/src/assets/magazine/3.svg";
+import majalah4 from "/src/assets/magazine/4.svg";
+import majalah5 from "/src/assets/magazine/5.svg";
+import majalah6 from "/src/assets/magazine/6.svg";
+import majalah7 from "/src/assets/magazine/7.svg";
+import majalah8 from "/src/assets/magazine/8.svg";
+import majalah9 from "/src/assets/magazine/9.svg";
+import majalah10 from "/src/assets/magazine/10.svg";
+import majalah11 from "/src/assets/magazine/11.svg";
+import majalah12 from "/src/assets/magazine/12.svg";
+import majalah13 from "/src/assets/magazine/13.svg";
+import majalah14 from "/src/assets/magazine/14.svg";
 import coverBelakang from "/src/assets/magazine/coverBelakang.svg";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -125,6 +128,10 @@ const pages = ref([
   },
   {
     id: 15,
+    img: majalah14,
+  },
+  {
+    id: 16,
     img: coverBelakang,
   },
 ]);

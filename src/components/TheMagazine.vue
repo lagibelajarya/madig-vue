@@ -2,8 +2,8 @@
 import { ref, onMounted, reactive } from "vue";
 import Icons from "../components/Icons.vue";
 import { useRouter } from "vue-router";
-import { apiClient } from "/src/api/axios-config";
-let patchCover = "http://127.0.0.1:8000/";
+import { apiClient, urlApi } from "/src/api/axios-config";
+let patchCover = urlApi;
 
 const router = useRouter();
 function goToNavigation(name) {

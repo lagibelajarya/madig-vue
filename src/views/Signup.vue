@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import Icons from "../components/Icons.vue";
 const router = useRouter();
 const gotoDashboard = () => router.push({ name: "dashboardMagazine" });
-console.log(router.hasRoute('signupa'));
+
 </script>
 <template>
   <div class="loader-content"></div>

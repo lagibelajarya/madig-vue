@@ -15,9 +15,7 @@
                 v-for="item in pages"
                 class="flipbook-page"
                 :style="{
-                  background: `url(${
-                    item.img
-                  }) no-repeat center `,
+                  background: `url(${item.img}) no-repeat center `,
                   backgroundSize: 'cover',
                 }"
               ></div>
@@ -59,11 +57,7 @@
           class="default-book"
         >
           <div v-for="item in pages" class="default-book-page">
-            <img
-              v-bind:src="item.img"
-              :alt="item.img"
-              :id="item.id"
-            />
+            <img v-bind:src="item.img" :alt="item.img" :id="item.id" />
           </div>
         </div>
         <div v-if="toggleCoverflow">
@@ -187,7 +181,7 @@
             </div>
             <div class="appMagazine-tools-general-box-item-right">
               <div
-                @click="(toggleAutoScroll = !toggleAutoScroll), activeScroll()"
+                @click="(toggleAutoScroll = !toggleAutoScroll), activeScroll(1)"
                 class="toggle-switch"
               >
                 <label :class="{ active: toggleAutoScroll }"></label>
@@ -203,22 +197,22 @@
 <script setup>
 import Icons from "../../components/Icons.vue";
 import { ref, reactive, onMounted } from "vue";
-import coverDepan from "../../assets/magazine/coverdepan.svg";
-import majalah1 from "../../assets/magazine/isi-1.svg";
-import majalah2 from "../../assets/magazine/isi-2.svg";
-import majalah3 from "../../assets/magazine/isi-3.svg";
-import majalah4 from "../../assets/magazine/isi-4.svg";
-import majalah5 from "../../assets/magazine/isi-5.svg";
-import majalah6 from "../../assets/magazine/isi-6.svg";
-import majalah7 from "../../assets/magazine/isi-7.svg";
-import majalah8 from "../../assets/magazine/isi-8.svg";
-import majalah9 from "../../assets/magazine/isi-9.svg";
-import majalah10 from "../../assets/magazine/isi-10.svg";
-import majalah11 from "../../assets/magazine/isi-11.svg";
-import majalah12 from "../../assets/magazine/isi-12.svg";
-import majalah13 from "../../assets/magazine/isi-13.svg";
-import video from "../../assets/magazine/videoMaspion.webp";
-import coverBelakang from "../../assets/magazine/coverBelakang.svg";
+import coverDepan from "/src/assets/magazine/coverdepan.svg";
+import majalah1 from "/src/assets/magazine/1.svg";
+import majalah2 from "/src/assets/magazine/2.svg";
+import majalah3 from "/src/assets/magazine/3.svg";
+import majalah4 from "/src/assets/magazine/4.svg";
+import majalah5 from "/src/assets/magazine/5.svg";
+import majalah6 from "/src/assets/magazine/6.svg";
+import majalah7 from "/src/assets/magazine/7.svg";
+import majalah8 from "/src/assets/magazine/8.svg";
+import majalah9 from "/src/assets/magazine/9.svg";
+import majalah10 from "/src/assets/magazine/10.svg";
+import majalah11 from "/src/assets/magazine/11.svg";
+import majalah12 from "/src/assets/magazine/12.svg";
+import majalah13 from "/src/assets/magazine/13.svg";
+import majalah14 from "/src/assets/magazine/14.svg";
+import coverBelakang from "/src/assets/magazine/coverBelakang.svg";
 import SliderAppMagazine from "../../components/SliderAppMagazine.vue";
 import { useRouter } from "vue-router";
 import { apiClient, urlApi } from "/src/api/axios-config";
@@ -289,6 +283,10 @@ const pages = ref([
   },
   {
     id: 15,
+    img: majalah14,
+  },
+  {
+    id: 16,
     img: coverBelakang,
   },
 ]);
@@ -327,9 +325,7 @@ if (router.hasRoute("AppMagazine")) {
   );
 }
 
-let audio = new Audio(
-  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-);
+let audio = new Audio("/src/assets/backsound.mp3");
 
 function loadApp() {
   let flipbook = $(".flipbook");
@@ -436,7 +432,7 @@ function turnPage(index) {
   }
 }
 
-function activeScroll(timedelay = 1) {
+function activeScroll(timedelay) {
   var scrollId;
   var height = 0;
   var minScrollHeight = 1;
@@ -449,13 +445,6 @@ function activeScroll(timedelay = 1) {
       }
       height += minScrollHeight;
     }, timedelay);
-    // window.addEventListener("scroll", () => {
-    //   toggleAutoScroll.value = false;
-    // });
-    console.log(`toggleautoscroll is true`);
-  } else {
-    console.log(`toggleautoscroll is false`);
-    scrollId = false;
   }
 }
 let valueVolume = ref(100);

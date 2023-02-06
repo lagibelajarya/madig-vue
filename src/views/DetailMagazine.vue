@@ -83,7 +83,6 @@ function toClipboard() {
 //   });
 // }
 function forceFileDownload(response, title) {
-  console.log(title);
   const url = window.URL.createObjectURL(new Blob([response.data]));
   const link = document.createElement("a");
   link.href = url;
@@ -172,7 +171,7 @@ let downloadWithAxios = (url, title) => {
                 class="detail-magazine-container-info-title-content-category-item"
               >
                 <a
-                  href="/src/assets/magazine/coverDepan.svg"
+                  href="/src/assets/magazine/releaseTheCocoon.pdf"
                   v-if="route.params.id == 1"
                   class="btn-download"
                   download
@@ -306,7 +305,24 @@ let downloadWithAxios = (url, title) => {
               class="loader-content"
               style="height: 10rem; width: 100%"
             ></div>
-            <p v-else>
+            <p v-if="route.params.id == 1 && loadingContent == false">
+              Setelah melalui masa pandemi, sudahkan kita mempunyai kebiasaan
+              baru? Seharusnya kebanyakan dari kita semua sudah mempunyai
+              kebiasaan baru masing masing dan dapat berkembang menjadi lebih
+              baik, terutama bagi para siswa dimana saat masa pandemi mendapati
+              pembelajaran daring dan menjalani Pertemuan Tatap Muka Terbatas
+              atau disebut juga PTMT. <br> <br> Di majalah yang kita terbitkan kali ini,
+              terdapat beberapa perkembangan proses belajar mengajar secara
+              daring dengan menggunakan beberapa aplikasi yang tersedia di
+              gadget atau handphone yang sering kita gunakan. Beberapa aplikasi
+              yang digunakan ada Google Classroom, Teams, Google Meet dan banyak
+              lain sebagainya. Yang dimana dapat membuat kita bisa melaksanakan
+              kegiatan belajar mengajar dengan cara yang berbeda namun juga
+              efektif. Dan di majalah kita kali ini ada beberapa artikel yang
+              menjelaskan tentang Maspion IT, Sekolah kami, beberapa Iklan, dan
+              juga Tim kami yang sudah membuat aplikasi website madig ini.
+            </p>
+            <p v-if="route.params.id != 1 && loadingContent == false">
               {{ rowDetail.items.description }}
             </p>
           </div>

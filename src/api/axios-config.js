@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-export const urlApi = "http://127.0.0.1:8000/";
+export const urlApi = "https://apimadig.000webhostapp.com/";
 export const apiClient = Axios.create({
   baseURL: `${urlApi}api`,
 });
